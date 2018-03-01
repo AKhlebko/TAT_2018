@@ -2,11 +2,14 @@
 
 namespace EntryPoint
 {
-
     class StringHandler
     {
+        // Class contain method for handling strings without storing them
         public static int LongestEqualSymbols(string str)
         {
+            // Return length of substring which consists of same symbols
+            // The aim of static here is to hadle lines
+            // withous creating instance of StringHandler class
             int length = 0;
             for (int i = 0; i < str.Length; i++)
             {
