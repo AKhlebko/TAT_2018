@@ -6,7 +6,7 @@ namespace DevTask1
     {
         static void Main(string[] args)
         {
-            SameSymbolSubtringFinder handler = new SameSymbolSubtringFinder(args);
+            SameSymbolSubstringFinder handler = new SameSymbolSubstringFinder(args);
             Console.WriteLine(handler.LongestSubStringSameSymbols());
         }
     }
