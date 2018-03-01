@@ -21,7 +21,7 @@ namespace DevTask1
             {
                 return 0;
             }
-            for (int i = 0; i < str.Length; i++)
+            for (int i = 0; i < str.Length - 1; i++)
             {
                 int tempCounter = 1;
                 int j = i + 1;
@@ -36,7 +36,7 @@ namespace DevTask1
                         }
                         else
                         {
-                            i = j-1;
+                            i = j - 1;
                             break;
                         }
                     }
