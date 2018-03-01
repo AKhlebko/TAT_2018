@@ -2,80 +2,58 @@
 
 namespace DevTask1
 {
+    /// <summary>
+    /// This class contains methods for getting string
+    /// and for for finding the longest same character substring
+    /// Stores processed string in a private field
+    /// </summary>
     class SameSymbolSubstringFinder
     {
-        /// <summary>
-        /// This class contains methods for getting string
-        /// and for for finding the longest same character substring
-        /// Stores processed string in a private field
-        /// </summary>        
-        private string str;
+        private string processedString;
 
+        /// <summary>
+        /// Returns length of the longest substring consisting of the same symbols
+        /// </summary>
         public int LongestSubStringSameSymbols()
         {
-            /// <summary>
-            /// Returns length of the longest substring consisting of the same symbols
-            /// </summary>
-            int MaxStringLength = 0;
-            if (str.Length == 0)
+            int maxStringLength = 0;
+            if (processedString.Length == 0)
             {
                 return 0;
             }
-            for (int i = 0; i < str.Length - 1; i++)
+            for (int i = 0; i < processedString.Length - 1; i++)
             {
                 int tempCounter = 1;
                 int j = i + 1;
-                while (j < str.Length)
+                while (j < processedString.Length)
                 {
-                    try
+                    if (processedString[i] == processedString[j])
                     {
-                        if (str[i] == str[j])
-                        {
-                            j++;
-                            tempCounter++;
-                        }
-                        else
-                        {
-                            i = j - 1;
-                            break;
-                        }
+                        j++;
+                        tempCounter++;
                     }
-                    catch (IndexOutOfRangeException ex)
+                    else
                     {
+                        i = j - 1;
+                        break;
+                    }
 
-                    }
                 }
-                if (tempCounter > MaxStringLength)
+                if (tempCounter > maxStringLength)
                 {
-                    MaxStringLength = tempCounter;
+                    maxStringLength = tempCounter;
                 }
             }
-            return MaxStringLength;
+            return maxStringLength;
         }
 
-        public SameSymbolSubstringFinder(string[] args)
+        /// <summary>
+        /// StringHandler class's instance initializer
+        /// Gets console args as input arguments
+        /// </summary>        
+        public SameSymbolSubstringFinder(string arg)
         {
-            /// <summary>
-            /// StringHandler class's instance initializer
-            /// Gets console args as input arguments
-            /// </summary>        
-            if (args.Length == 0)
-            {
-                str = "";
-            }
-            else
-            {
-                GetStringFromArguments(args);
-            }
-        }
-
-        private void GetStringFromArguments(string[] args)
-        {
-            /// <summary>
-            /// Makes string from the console arguments
-            /// </summary>        
-            str = String.Join("", args);
-            return;
+            processedString = arg;
         }
     }
 }

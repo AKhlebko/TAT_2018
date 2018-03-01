@@ -6,8 +6,15 @@ namespace DevTask1
     {
         static void Main(string[] args)
         {
-            SameSymbolSubstringFinder handler = new SameSymbolSubstringFinder(args);
-            Console.WriteLine(handler.LongestSubStringSameSymbols());
+            if (args.Length == 1)
+            {
+                SameSymbolSubstringFinder finder = new SameSymbolSubstringFinder(args[0]);
+                Console.WriteLine(finder.LongestSubStringSameSymbols());
+            }
+            else
+            {
+                Console.WriteLine("Wrong arguments number.");
+            }
         }
     }
 }
