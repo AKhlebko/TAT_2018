@@ -1,4 +1,5 @@
 bin/
 obj/
 .vs/
-.gitattributes 
+.gitattributes
+.gitignore 

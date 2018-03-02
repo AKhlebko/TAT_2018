@@ -9,7 +9,7 @@ namespace DevTask1
             if (args.Length == 1)
             {
                 SameSymbolSubstringFinder finder = new SameSymbolSubstringFinder(args[0]);
-                Console.WriteLine(finder.LongestSubStringSameSymbols());
+                Console.WriteLine(finder.GetLongestSubStringSameSymbols());
             }
             else
             {
