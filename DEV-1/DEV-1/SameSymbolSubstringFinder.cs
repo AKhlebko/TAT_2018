@@ -18,9 +18,10 @@ namespace DevTask1
 
         /// <summary>
         /// SameSymbolSubstringFinder class's instance initializer
-        /// Gets console args as input arguments 
         /// </summary>
-        /// <param name="arg"></param>            
+        /// <param name="arg">
+        /// Gets the string from the console
+        /// </param>            
         public SameSymbolSubstringFinder(string arg)
         {
             processedString = arg;
@@ -30,7 +31,7 @@ namespace DevTask1
         /// Finds the longest substring with same symbols
         /// </summary>
         /// <returns>
-        /// The length of the longest substring
+        /// Returns the length of the longest substring
         /// </returns>
         public int GetLongestSubStringSameSymbols()
         {
@@ -51,15 +52,19 @@ namespace DevTask1
             return maxStringLength;
         }
 
-        /// <summary>
-        /// Private method for comparasing maxSymbolStringLength with tempLength 
-        /// of the string between end and start points
-        /// replaces maxSamsSymbolLength when it's smaller then tempLength
-        /// replaces start point with end one
+        /// <summary>                       
+        /// Compare buffer and max lines' lengths
+        /// Change start's point
         /// </summary>
-        /// <param name="maxLength"></param>
-        /// <param name="start"></param>
-        /// <param name="end"></param>
+        /// <param name="maxLength">
+        /// Max length of the same symbol string on this iteration 
+        /// </param>
+        /// <param name="start">
+        /// Start point of temp line
+        /// </param>
+        /// <param name="end">
+        /// End point of temp line 
+        /// </param>
         public void ChangeStartPosAndMaxLength(ref int maxLength, ref int start, int end)
         {
             int tempLength = end - start + 1;
