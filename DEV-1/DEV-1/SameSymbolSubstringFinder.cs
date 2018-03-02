@@ -2,18 +2,14 @@
 
 namespace DevTask1
 {
-    /// <summary>
-    /// This class contains methods for getting string
-    /// and for for finding the longest same character substring
-    /// Stores processed string in a private field
-    /// </summary>
+    // This class contains methods for getting string
+    // and for for finding the longest same character substring
+    // Stores processed string in a private field
     class SameSymbolSubstringFinder
     {
         private string processedString;
 
-        /// <summary>
-        /// Returns length of the longest substring consisting of the same symbols
-        /// </summary>
+        // Returns length of the longest substring consisting of the same symbols
         public int LongestSubStringSameSymbols()
         {
             int maxStringLength = 0;
