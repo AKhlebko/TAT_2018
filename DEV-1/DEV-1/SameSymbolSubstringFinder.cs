@@ -15,11 +15,12 @@ namespace DevTask1
     class SameSymbolSubstringFinder
     {
         private string processedString;
-
+                                                
         /// <summary>
         /// StringHandler class's instance initializer
-        /// Gets console args as input arguments
-        /// </summary>        
+        /// Gets console args as input arguments 
+        /// </summary>
+        /// <param name="arg"></param>            
         public SameSymbolSubstringFinder(string arg)
         {
             processedString = arg;
@@ -38,30 +39,35 @@ namespace DevTask1
             {
                 return 0;
             }
-            for (int i = 0; i < processedString.Length - 1; i++)
-            {
-                int tempCounter = 1;
-                int j = i + 1;
-                while (j < processedString.Length)
+            int start = 0;
+            for (int i = 0; i < processedString.Length; i++)
+            {   
+                if (processedString[i] != processedString[start])
                 {
-                    if (processedString[i] == processedString[j])
-                    {
-                        j++;
-                        tempCounter++;
-                    }
-                    else
-                    {
-                        i = j - 1;
-                        break;
-                    }
-
-                }
-                if (tempCounter > maxStringLength)
-                {
-                    maxStringLength = tempCounter;
+                    ChangeStartPosAndMaxLength(ref maxStringLength, ref start, i);
                 }
             }
+            ChangeStartPosAndMaxLength(ref maxStringLength, ref start, processedString.Length - 1);
             return maxStringLength;
         }
+
+        /// <summary>
+        /// Private method for comparasing maxSymbolStringLength with tempLength 
+        /// of the string between end and start points
+        /// replaces maxSamsSymbolLength when it's smaller then tempLength
+        /// replaces start point with end one
+        /// </summary>
+        /// <param name="maxLength"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        public void ChangeStartPosAndMaxLength(ref int maxLength, ref int start, int end)
+        {
+            int tempLength = end - start + 1;
+            if (tempLength > maxLength)
+            {
+                maxLength = tempLength;
+            }
+            start = end;
+        } 
     }
 }
