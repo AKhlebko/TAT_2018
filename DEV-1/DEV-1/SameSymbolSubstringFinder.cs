@@ -15,9 +15,9 @@ namespace DevTask1
     class SameSymbolSubstringFinder
     {
         private string processedString;
-                                                
+
         /// <summary>
-        /// StringHandler class's instance initializer
+        /// SameSymbolSubstringFinder class's instance initializer
         /// Gets console args as input arguments 
         /// </summary>
         /// <param name="arg"></param>            
@@ -44,7 +44,7 @@ namespace DevTask1
             {   
                 if (processedString[i] != processedString[start])
                 {
-                    ChangeStartPosAndMaxLength(ref maxStringLength, ref start, i);
+                    ChangeStartPosAndMaxLength(ref maxStringLength, ref start, i-1);
                 }
             }
             ChangeStartPosAndMaxLength(ref maxStringLength, ref start, processedString.Length - 1);
