@@ -6,10 +6,17 @@ namespace TaskDEV2
     class EntryPoint
     {
         static void Main(string[] args)
-        {
-            StringBuilder str = new StringBuilder(Console.ReadLine());
-            OnlyEvenPositionCharsString evener = new OnlyEvenPositionCharsString(str);
-            evener.LeaveOnlyEvenPositionChars();
-        }
+        { 
+            Console.Write("Input string to delete odd positions chars: ");
+            string inputString;
+            inputString = Console.ReadLine();
+            while (inputString.Length == 0)
+            {
+                Console.Write("Input not empty string: ");
+                inputString = Console.ReadLine();
+            }
+            OddIndexCharsDeleter evener = new OddIndexCharsDeleter(inputString);
+            evener.PrintOnlyEvenPositionChars();
+        }       
     }
 }
