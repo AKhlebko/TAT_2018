@@ -10,6 +10,7 @@ namespace TaskDEV2
     class OddIndexCharsDeleter
     {
         StringBuilder processedStringBuilder;
+        StringBuilder outputEvenStringBuilder;
 
         /// <summary>
         /// Initializer for class's instances
@@ -21,6 +22,7 @@ namespace TaskDEV2
         public OddIndexCharsDeleter(string str)
         {
             processedStringBuilder = new StringBuilder(str);
+            outputEvenStringBuilder = new StringBuilder();
         }
 
         /// <summary>
@@ -28,7 +30,7 @@ namespace TaskDEV2
         /// </summary>
         public void PrintOnlyEvenPositionChars()
         {
-            Console.WriteLine($"String with only even position chars - {GetEvenIndexStringBulder()}");
+            Console.WriteLine($"String with only even position chars - {outputEvenStringBuilder}");
         }
 
         /// <summary>
@@ -38,14 +40,12 @@ namespace TaskDEV2
         /// <returns>
         /// Returns made StringBuilder
         /// </returns>
-        private StringBuilder GetEvenIndexStringBulder()
+        public void MakeEvenIndexStringBulder()
         {
-            StringBuilder outputEvenStringBuilder = new StringBuilder();
-            for (int evenPos = 0; evenPos < processedStringBuilder.Length; evenPos += 2)
+            for (int i = 0; i < processedStringBuilder.Length; i += 2)
             {
-                outputEvenStringBuilder.Append(processedStringBuilder[evenPos]);
+                outputEvenStringBuilder.Append(processedStringBuilder[i]);
             }
-            return outputEvenStringBuilder;
         }
         
     }
