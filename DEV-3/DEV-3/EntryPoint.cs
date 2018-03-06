@@ -7,33 +7,16 @@ namespace taskDEV3
     {
         static void Main(string[] args)
         {
-            BigInteger decimalNumer;
-            short newRadix;
-            if (args.Length != 2)
+            InputDataHandler handler = new InputDataHandler(args);
+            if (handler.UnPackAndCheckDataFormat())
             {
-                Console.WriteLine("ERROR: Wrong number of arguments.");
-            }            
-            else if (!BigInteger.TryParse(args[0], out decimalNumer))
-            {
-                Console.WriteLine("ERROR: Input decimal is not a number");
-            }
-            else if (decimalNumer.Sign == -1)
-            {
-                Console.WriteLine("ERROR: Can't convert negative numbers");
-            }
-            else if (!short.TryParse(args[1], out newRadix))
-            {
-                Console.WriteLine("ERROR: Input radix is not a number");
-            }
-            else if (newRadix > 2 && newRadix < 20)
-            {
-                RadixConvenet converter = new RadixConvenet(decimalNumer, newRadix);
+                RadixConverter converter = new RadixConverter(handler.decimalNumber, handler.newRadix);
                 converter.ConvertNumberToNewRadix();
                 converter.PrintNumberInNewRadix();
             }
             else
             {
-                Console.WriteLine($"ERROR: I can't conver this number to the {newRadix} radix");
+                handler.PrintDataMistakeType();
             }
         }
     }

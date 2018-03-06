@@ -8,13 +8,13 @@ namespace taskDEV3
     /// Class which stores decimal number's form
     /// and can switch it into some other radixs from 2 to 20
     /// </summary>
-    class RadixConvenet
+    class RadixConverter
     {
         BigInteger decimalNumber;
         short newRadix;
         StringBuilder numberInNewRadix;
         
-        public RadixConvenet(BigInteger pDecimalNumber, short pNewRadix)
+        public RadixConverter(BigInteger pDecimalNumber, short pNewRadix)
         {
             decimalNumber = pDecimalNumber;
             newRadix = pNewRadix;
