@@ -10,34 +10,28 @@ namespace taskDEV3
         {
             try
             {
-                if (args.Length < 2)
+                ConsoleDataFormatChecker checker = new ConsoleDataFormatChecker(args);
+                if (checker.CheckInputDataFormat())
                 {
-                    throw new Exception("Wrong number of argumets.");
+                    RadixConverter converter = new RadixConverter(BigInteger.Parse(args[0]), int.Parse(args[1]));
+                    StringBuilder NumberInNewRadix = converter.GetNewRadixNumber();
+                    Console.WriteLine($"Number {converter.decimalNumber} in new radix {converter.newRadix} is {NumberInNewRadix}");
                 }
-                BigInteger decimalNumber = BigInteger.Parse(args[0]);
-                int newRadix = int.Parse(args[1]);
-                if (newRadix < 2 || newRadix > 20)
-                {
-                    throw new Exception("Radix value is out of correct range.");
-                }
-                RadixConverter converter = new RadixConverter(decimalNumber, newRadix);
-                StringBuilder NumberInNewRadix = converter.GetNewRadixNumber();
-                Console.WriteLine($"Number {decimalNumber} in new radix {newRadix} is {NumberInNewRadix}");
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine("ERROR: " + ex.ParamName);
             }
             catch (FormatException ex)
             {
                 if (ex.Source == "System.Numerics")
                 {
-                    Console.WriteLine("ERROR: Decimal number format is not acceptable.");
+                    Console.WriteLine("ERROR: Wrong decimal number format.");
                 }
                 else
                 {
-                    Console.WriteLine("ERROR: Radix number format is not acceptable.");
+                    Console.WriteLine("ERROR: Wrong radix format.");
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("ERROR: " + ex.Message);
             }
         }
     }

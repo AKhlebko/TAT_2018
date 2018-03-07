@@ -1,5 +1,4 @@
-﻿using System;
-using System.Numerics;
+﻿using System.Numerics;
 using System.Text;
 
 namespace taskDEV3
@@ -10,10 +9,10 @@ namespace taskDEV3
     /// </summary>
     class RadixConverter
     {
-        // DigitCode = code('A') + (mudulo - 10);
+        // if modulo > 9 -> DigitCode = code('A') + (mudulo - 10);
         private const int AsciiRadixDigitBase = 55;
-        BigInteger decimalNumber;
-        int newRadix;
+        public BigInteger decimalNumber { get; set; }
+        public int newRadix { get; set; }
 
         public RadixConverter(BigInteger pDecimalNumber, int pNewRadix)
         {
@@ -31,19 +30,26 @@ namespace taskDEV3
         {
             StringBuilder numberInNewRadix = new StringBuilder();
             BigInteger bufferDecimalNumber = decimalNumber;
-            while (bufferDecimalNumber > 0)
+            if (bufferDecimalNumber.IsZero)
             {
-                int modulo = (int)(bufferDecimalNumber % newRadix);
-                if (modulo < 10)
+                numberInNewRadix.Append(0);
+            }
+            else
+            {
+                while (bufferDecimalNumber > 0)
                 {
-                    numberInNewRadix.Insert(0, modulo);
+                    int modulo = (int)(bufferDecimalNumber % newRadix);
+                    if (modulo < 10)
+                    {
+                        numberInNewRadix.Insert(0, modulo);
+                    }
+                    else
+                    {
+                        char newRadixDigit = (char)(AsciiRadixDigitBase + modulo);
+                        numberInNewRadix.Insert(0, newRadixDigit);
+                    }
+                    bufferDecimalNumber /= newRadix;
                 }
-                else
-                {
-                    char newRadixDigit = (char)(AsciiRadixDigitBase + modulo);
-                    numberInNewRadix.Insert(0, newRadixDigit);
-                }
-                bufferDecimalNumber /= newRadix;
             }
             return numberInNewRadix;
         }
