@@ -1,22 +1,14 @@
-﻿using System;
-using System.Numerics;
-
-namespace taskDEV3
+﻿namespace taskDEV3
 {
     class EntryPoint
     {
         static void Main(string[] args)
         {
-            InputDataHandler handler = new InputDataHandler(args);
-            if (handler.UnPackAndCheckDataFormat())
+            InputDataChecker preparer = new InputDataChecker(args);
+            if (preparer.ParseAndCheckDataFormat())
             {
-                RadixConverter converter = new RadixConverter(handler.decimalNumber, handler.newRadix);
-                converter.ConvertNumberToNewRadix();
-                converter.PrintNumberInNewRadix();
-            }
-            else
-            {
-                handler.PrintDataMistakeType();
+                RadixConverter converter = new RadixConverter(preparer.decimalNumber, preparer.newRadix);
+                converter.ConvertAndPrintNewRadixNumber();
             }
         }
     }
