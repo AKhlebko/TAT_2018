@@ -5,28 +5,29 @@ using System.Text;
 namespace taskDEV3
 {
     /// <summary>
-    /// Class which stores decimal number's form
-    /// and can convert it into some other radixs from 2 to 20
+    /// Class stores decimal number and
+    /// has method for returning this number converted into another radix
     /// </summary>
     class RadixConverter
     {
-        // The idea is that we have 'A' with code 65 and if modulo is 10 or more, we have to 
-        // use symbols starting from it in new radix number. DigitCode = 65 + (mudulo - 10);
+        // DigitCode = code('A') + (mudulo - 10);
         private const int AsciiRadixDigitBase = 55;
         BigInteger decimalNumber;
         int newRadix;
-        
+
         public RadixConverter(BigInteger pDecimalNumber, int pNewRadix)
         {
             decimalNumber = pDecimalNumber;
             newRadix = pNewRadix;
-            
         }
 
         /// <summary>
         /// Method converts decimal number into a number with another radix
         /// </summary>
-        public void ConvertAndPrintNewRadixNumber()
+        /// <returns>
+        /// Returns StringBuilder with NumberInNewRadix
+        /// </returns>
+        public StringBuilder GetNewRadixNumber()
         {
             StringBuilder numberInNewRadix = new StringBuilder();
             BigInteger bufferDecimalNumber = decimalNumber;
@@ -44,12 +45,7 @@ namespace taskDEV3
                 }
                 bufferDecimalNumber /= newRadix;
             }
-            PrintNumberInNewRadix(numberInNewRadix);
+            return numberInNewRadix;
         }
-                    
-        private void PrintNumberInNewRadix(StringBuilder numberInNewRadix)
-        {
-            Console.WriteLine($"Number {decimalNumber} in radix {newRadix} is {numberInNewRadix}");
-        } 
     }
 }
