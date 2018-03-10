@@ -8,9 +8,8 @@ namespace TaskDEV4
     class XMLparser
     {
         /// <summary>
-        /// Recursive method for depth parsing XML file
-        /// Starts from the top and goes deeper to
-        /// find every tag and it's data
+        /// Recursive method for finding all elements 
+        /// and their tags in XML file
         /// </summary>
         /// <param name="headElement">
         /// The root element for every XMLElement found on this level
@@ -23,32 +22,33 @@ namespace TaskDEV4
             string openTagPattern = @"(<.[^(/><.)]+>)";
             while (Regex.IsMatch(xmlString, openTagPattern))
             {
-                // All variables needed to parse this tag and it's body
+                // Element's declaration, it's start tag and it's end tag 
                 string foundElement = Regex.Match(xmlString, openTagPattern).ToString();
-                string tagName = GetTagName(foundElement);
-                string closeTagName = GetCloseTag(tagName);
+                string startTag = GetStartTag(foundElement);
+                string closeTag = GetEndTag(startTag);
+                // positions where element's body starts and ends
                 int bodyStartPoint = xmlString.IndexOf(foundElement) + foundElement.Length;
-                int bodyEndPoint = xmlString.IndexOf(closeTagName);
-
-                string foundTagBody = xmlString.Substring(bodyStartPoint, bodyEndPoint - bodyStartPoint).Trim();
-                XmlElement newXmlElement = new XmlElement(tagName);
-                AddAttrIntoElement(foundElement, newXmlElement);
-                if (Regex.IsMatch(foundTagBody, openTagPattern))
+                int bodyEndPoint = xmlString.IndexOf(closeTag);
+                // main method's part
+                string foundElementBody = xmlString.Substring(bodyStartPoint, bodyEndPoint - bodyStartPoint).Trim();
+                XmlElement newXmlElement = new XmlElement(startTag);
+                AddAttrsIntoElement(foundElement, newXmlElement);
+                if (Regex.IsMatch(foundElementBody, openTagPattern))
                 {
-                    DepthXMLParse(newXmlElement, foundTagBody);
-                    xmlString = RemoveParsedBody(bodyStartPoint, bodyEndPoint, foundElement, tagName, xmlString);
+                    DepthXMLParse(newXmlElement, foundElementBody);
+                    xmlString = RemoveParsedBody(bodyStartPoint, bodyEndPoint, foundElement, startTag, xmlString);
                 }
                 else
                 {
-                    newXmlElement.SetBody(foundTagBody);
-                    xmlString = RemoveParsedBody(bodyStartPoint, bodyEndPoint, foundElement, tagName, xmlString);
+                    newXmlElement.SetBody(foundElementBody);
+                    xmlString = RemoveParsedBody(bodyStartPoint, bodyEndPoint, foundElement, startTag, xmlString);
                 }
                 headElement.AddNested(newXmlElement);
             }
         }
         
         /// <summary>
-        /// Makes close tag based on the tag name
+        /// Makes end tag based on the tag name
         /// </summary>
         /// <param name="openTagName">
         /// Name of the tag
@@ -56,7 +56,7 @@ namespace TaskDEV4
         /// <returns>
         /// Returns closing tag
         /// </returns>
-        public string GetCloseTag(string openTagName)
+        public string GetEndTag(string openTagName)
         {          
             return ("</" + openTagName.Trim() + ">");
         }
@@ -71,25 +71,16 @@ namespace TaskDEV4
         /// <param name="xmlElement">
         /// Instance to put the attributes in
         /// </param>
-        private void AddAttrIntoElement(string elementString, XmlElement xmlElement)
+        private void AddAttrsIntoElement(string elementString, XmlElement xmlElement)
         {
             elementString = elementString.Replace(xmlElement.tagName, string.Empty).Trim();
-            char attrBorders = (char)34;
             while (elementString.Contains("="))
             {
-                int startPoint = 1;
-                int endPoint = elementString.IndexOf(attrBorders) + 1;
-                string attrName = elementString.Substring(startPoint, elementString.IndexOf("=") - 1);
-                string attrValue = string.Empty;
-
-                while(!elementString[endPoint].Equals(attrBorders))
-                {
-                    attrValue += elementString[endPoint];
-                    endPoint++;
-                }
-
+                string attrName = GetAttrName(elementString);
+                string attrValue = GetAttrValue(elementString);
                 xmlElement.AddAttr(attrName, attrValue);
-                elementString = elementString.Remove(startPoint, endPoint);
+                int endPos = elementString.IndexOf(attrValue) + attrValue.Length;
+                elementString = elementString.Remove(1, endPos);
             }
         }
 
@@ -97,31 +88,48 @@ namespace TaskDEV4
         /// Gets tagName from the line containing 
         /// tag's name and all it's attributes
         /// </summary>
-        /// <param name="elementString">
+        /// <param name="XMLElement">
         /// String which contains tagNames and it's attributes
         /// </param>
         /// <returns>
         /// Returns tag's name
         /// </returns>
-        public string GetTagName(string elementString)
+        public string GetStartTag(string XMLElement)
         {
             int startPoint = 1;
-            int endPoint = elementString.IndexOf(' ');
+            int endPoint = XMLElement.IndexOf(' ');
             if (endPoint == -1)
             {
-                return elementString.Substring(startPoint, elementString.IndexOf(">") - 1);
+                return XMLElement.Substring(startPoint, XMLElement.IndexOf(">") - startPoint);
             }
             else
             {
-                return elementString.Substring(startPoint, elementString.IndexOf(' '));
+                return XMLElement.Substring(startPoint, XMLElement.IndexOf(' ') - startPoint);
             }
+        }
+
+        private string GetAttrName(string elementString)
+        {
+            return elementString.Substring(1, elementString.IndexOf("=") - 1);
+        }
+
+        private string GetAttrValue(string elementString)
+        {
+            char quotes = '"';
+            int endPos = elementString.IndexOf(quotes) + 1;
+            int startPos = endPos;
+            while (!elementString[endPos].Equals(quotes))
+            {          
+                endPos++;
+            }
+            return elementString.Substring(startPos, endPos - startPos);
         }
 
         private string RemoveParsedBody(int bodyStartPoint, int bodyEndPoint, string foundElement, string tagName, string xmlString)
         {
             int startPos = bodyStartPoint - foundElement.Length;
-            int endPoint = bodyEndPoint - bodyStartPoint + foundElement.Length + GetCloseTag(tagName).Length;
-            return xmlString.Remove(startPos, endPoint).Trim();
+            int lengthToDelete = bodyEndPoint - bodyStartPoint + foundElement.Length + GetEndTag(tagName).Length;
+            return xmlString.Remove(startPos, lengthToDelete).Trim();
         }
     }
 }

@@ -11,10 +11,10 @@ namespace TaskDEV4
             {
                 string xmlString = File.ReadAllText(@args[0]);
                 XMLparser parser = new XMLparser();
-                XmlElement root = new XmlElement("Parsed XML file");
-                parser.DepthXMLParse(root, xmlString);
-                root.Sort();
-                root.PrintFromRootElement();
+                XmlElement rootElement = new XmlElement("Parsed XML file");
+                parser.DepthXMLParse(rootElement, xmlString);
+                rootElement.Sort();
+                rootElement.PrintFromRootElement();
             }
             catch (IndexOutOfRangeException)
             {

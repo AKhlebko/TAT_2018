@@ -6,56 +6,53 @@ using System.Text;
 namespace TaskDEV4
 {
     /// <summary>
-    /// Class for storing XML tag and it's body
+    /// Class for storing XML element, it's attributes and it's body
     /// Provides an interface for interacting with elements
     /// </summary>
     class XmlElement : IComparable<XmlElement>
     {
-        private Hashtable tagAttributes;
+        private Hashtable elementAttributes;
         private List<XmlElement> nestedElements;
-        private string tagBody;
+        private string elementBody;
         public string tagName { get; }
 
         public XmlElement()
         {
             tagName = string.Empty;
-            tagAttributes = new Hashtable();
+            elementAttributes = new Hashtable();
             nestedElements = new List<XmlElement>();
         }
 
         public XmlElement(string pTagName)
         {
-            tagAttributes = new Hashtable();
+            elementAttributes = new Hashtable();
             nestedElements = new List<XmlElement>();
-            tagBody = string.Empty;
+            elementBody = string.Empty;
             tagName = pTagName;
         }
 
-        private void AddHierarchyName(StringBuilder nameHierarchy)
+        private void AddToTagHierarchy(StringBuilder elementInfo)
         {
-            nameHierarchy.Append(tagName);
-            if (tagAttributes.Count == 0)
-            {
-                nameHierarchy.Append(" -> ");
-            } 
+            elementInfo.Append(tagName); 
         }
 
-        private void AddElementBody(StringBuilder nameHierarchy)
+        private void AddElementBody(StringBuilder elementInfo)
         {
-            nameHierarchy.Append(tagBody);
+            elementInfo.Append(elementBody);
         }
 
-        private void AddAttributes(StringBuilder nameHierarchy)
+        private void AddAttributes(StringBuilder elementInfo)
         {
-            if (tagAttributes.Count != 0)
+            if (elementAttributes.Count != 0)
             {
-                nameHierarchy.Append("{ ");
-                foreach (DictionaryEntry attr in tagAttributes)
+                elementInfo.Append(" {");
+                foreach (DictionaryEntry attr in elementAttributes)
                 {
-                    nameHierarchy.Append($"{attr.Key} = {attr.Value}; ");
+                    elementInfo.Append($" {attr.Key} = {attr.Value}; ");
                 }
-                nameHierarchy.Append("} -> ");
+                elementInfo.Append("}");
             }
+            elementInfo.Append(" -> ");
         }
 
         /// <summary>
@@ -70,12 +67,12 @@ namespace TaskDEV4
         /// </param>
         public void AddAttr(string attrName, string attrValue)
         {
-            tagAttributes.Add(attrName.Trim(), attrValue.Trim());
+            elementAttributes.Add(attrName.Trim(), attrValue.Trim());
         }
         
         /// <summary>
         /// Add another nested element to this instance's
-        /// nestedElements list
+        /// nestedElements List
         /// </summary>
         /// <param name="newNestedElement">
         /// XMLElement to add
@@ -89,15 +86,15 @@ namespace TaskDEV4
         /// Assignes tagBody with transmitted string
         /// </summary>
         /// <param name="pTagBody">
-        /// String with new tagBody
+        /// String with new tag body
         /// </param>
         public void SetBody(string pTagBody)
         {
-            tagBody = pTagBody;
+            elementBody = pTagBody;
         }
         
         /// <summary>
-        /// Sorts elements by their names and attributes
+        /// Sorts the elements by their names
         /// </summary>
         public void Sort()
         {
@@ -110,6 +107,7 @@ namespace TaskDEV4
         
         /// <summary>
         /// Comparer implimented from IComparer
+        /// Standart string comparer used here
         /// </summary>
         /// <param name="other">
         /// XMLElement to campare with
@@ -136,24 +134,25 @@ namespace TaskDEV4
 
         /// <summary>
         /// Recursively prints the element with it's body
-        /// and all nested ones
+        /// and all nested elements
         /// </summary>
-        /// <param name="nameHierarchy">
+        /// <param name="elementInfo">
         /// Full tag name, starting from the root tag
         /// </param>
-        public void Print(StringBuilder nameHierarchy)
+        public void Print(StringBuilder elementInfo)
         {
-            AddHierarchyName(nameHierarchy);
-            AddAttributes(nameHierarchy);
-            AddElementBody(nameHierarchy);
-            if (!(tagBody == string.Empty))
+            AddToTagHierarchy(elementInfo);
+            AddAttributes(elementInfo);
+            AddElementBody(elementInfo);
+            if (!(elementBody == string.Empty))
             {
-                Console.WriteLine(nameHierarchy);
+                Console.WriteLine(elementInfo);
+                return;
             }
             foreach (XmlElement element in nestedElements)
             {
-                StringBuilder nextLevelName = new StringBuilder(nameHierarchy.ToString());
-                element.Print(nextLevelName);
+                StringBuilder infoOnNextDepth = new StringBuilder(elementInfo.ToString());
+                element.Print(infoOnNextDepth);
             }
         }
     }
