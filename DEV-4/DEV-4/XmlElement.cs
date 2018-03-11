@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,7 +10,7 @@ namespace TaskDEV4
     /// </summary>
     class XmlElement : IComparable<XmlElement>
     {
-        private Hashtable elementAttributes;
+        private List<XmlAttribute> elementAttributes;
         private List<XmlElement> nestedElements;
         private string elementBody;
         public string tagName { get; }
@@ -19,40 +18,16 @@ namespace TaskDEV4
         public XmlElement()
         {
             tagName = string.Empty;
-            elementAttributes = new Hashtable();
+            elementAttributes = new List<XmlAttribute>();
             nestedElements = new List<XmlElement>();
         }
 
         public XmlElement(string pTagName)
         {
-            elementAttributes = new Hashtable();
+            elementAttributes = new List<XmlAttribute>();
             nestedElements = new List<XmlElement>();
             elementBody = string.Empty;
             tagName = pTagName;
-        }
-
-        private void AddToTagHierarchy(StringBuilder elementInfo)
-        {
-            elementInfo.Append(tagName); 
-        }
-
-        private void AddElementBody(StringBuilder elementInfo)
-        {
-            elementInfo.Append(elementBody);
-        }
-
-        private void AddAttributes(StringBuilder elementInfo)
-        {
-            if (elementAttributes.Count != 0)
-            {
-                elementInfo.Append(" {");
-                foreach (DictionaryEntry attr in elementAttributes)
-                {
-                    elementInfo.Append($" {attr.Key} = {attr.Value}; ");
-                }
-                elementInfo.Append("}");
-            }
-            elementInfo.Append(" -> ");
         }
 
         /// <summary>
@@ -67,7 +42,8 @@ namespace TaskDEV4
         /// </param>
         public void AddAttr(string attrName, string attrValue)
         {
-            elementAttributes.Add(attrName.Trim(), attrValue.Trim());
+            XmlAttribute newAttribute = new XmlAttribute(attrName, attrValue);
+            elementAttributes.Add(newAttribute);
         }
         
         /// <summary>
@@ -98,10 +74,11 @@ namespace TaskDEV4
         /// </summary>
         public void Sort()
         {
+            elementAttributes.Sort();            
             nestedElements.Sort();
-            foreach (XmlElement xmlElement in nestedElements)
+            foreach (XmlElement nested in nestedElements)
             {
-                xmlElement.Sort();
+                nested.Sort();
             }
         }
         
@@ -126,9 +103,9 @@ namespace TaskDEV4
         /// </summary>
         public void PrintFromRootElement()
         {
-            foreach (XmlElement element in nestedElements)
+            foreach (XmlElement nested in nestedElements)
             {
-                element.Print(new StringBuilder());
+                nested.Print(new StringBuilder());
             }
         }
 
@@ -142,18 +119,42 @@ namespace TaskDEV4
         public void Print(StringBuilder elementInfo)
         {
             AddToTagHierarchy(elementInfo);
-            AddAttributes(elementInfo);
-            AddElementBody(elementInfo);
+            AddAttributesInfo(elementInfo);
+            AddElementBodyInfo(elementInfo);
             if (!(elementBody == string.Empty))
             {
                 Console.WriteLine(elementInfo);
                 return;
             }
-            foreach (XmlElement element in nestedElements)
+            foreach (XmlElement nested in nestedElements)
             {
                 StringBuilder infoOnNextDepth = new StringBuilder(elementInfo.ToString());
-                element.Print(infoOnNextDepth);
+                nested.Print(infoOnNextDepth);
             }
+        }
+
+        private void AddToTagHierarchy(StringBuilder elementInfo)
+        {
+            elementInfo.Append(tagName);
+        }
+
+        private void AddElementBodyInfo(StringBuilder elementInfo)
+        {
+            elementInfo.Append(elementBody);
+        }
+
+        private void AddAttributesInfo(StringBuilder elementInfo)
+        {
+            if (elementAttributes.Count != 0)
+            {
+                elementInfo.Append(" {");
+                foreach (XmlAttribute attribute in elementAttributes)
+                {
+                    elementInfo.Append($" {attribute.attrName} = {attribute.attrValue}; ");
+                }
+                elementInfo.Append("}");
+            }
+            elementInfo.Append(" -> ");
         }
     }
 }

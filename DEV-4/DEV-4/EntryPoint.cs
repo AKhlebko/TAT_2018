@@ -12,6 +12,7 @@ namespace TaskDEV4
                 string xmlString = File.ReadAllText(@args[0]);
                 XMLparser parser = new XMLparser();
                 XmlElement rootElement = new XmlElement("Parsed XML file");
+                xmlString = parser.DeleteComments(xmlString);
                 parser.DepthXMLParse(rootElement, xmlString);
                 rootElement.Sort();
                 rootElement.PrintFromRootElement();

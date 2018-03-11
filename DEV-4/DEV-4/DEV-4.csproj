@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="EntryPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlAttribute.cs" />
     <Compile Include="XmlElement.cs" />
     <Compile Include="XMLparser.cs" />
   </ItemGroup>

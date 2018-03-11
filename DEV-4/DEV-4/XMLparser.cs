@@ -7,6 +7,18 @@ namespace TaskDEV4
     /// </summary>
     class XMLparser
     {
+        
+        public string DeleteComments(string xmlString)
+        {
+            while (xmlString.Contains("<!--"))
+            {
+                int startCommentPos = xmlString.IndexOf("<!--");
+                int endCommentPos = xmlString.IndexOf("-->") + 3;
+                xmlString = xmlString.Remove(startCommentPos, endCommentPos - startCommentPos).Trim();
+            }
+            return xmlString;
+        }
+
         /// <summary>
         /// Recursive method for finding all elements 
         /// and their tags in XML file
@@ -31,22 +43,29 @@ namespace TaskDEV4
                 int bodyEndPoint = xmlString.IndexOf(closeTag);
                 // main method's part
                 string foundElementBody = xmlString.Substring(bodyStartPoint, bodyEndPoint - bodyStartPoint).Trim();
-                XmlElement newXmlElement = new XmlElement(startTag);
-                AddAttrsIntoElement(foundElement, newXmlElement);
+                XmlElement newNestedXmlElement = new XmlElement(startTag);
+                AddAttrsIntoElement(foundElement, newNestedXmlElement);
                 if (Regex.IsMatch(foundElementBody, openTagPattern))
                 {
-                    DepthXMLParse(newXmlElement, foundElementBody);
+                    DepthXMLParse(newNestedXmlElement, foundElementBody);
                     xmlString = RemoveParsedBody(bodyStartPoint, bodyEndPoint, foundElement, startTag, xmlString);
                 }
                 else
                 {
-                    newXmlElement.SetBody(foundElementBody);
+                    newNestedXmlElement.SetBody(foundElementBody);
                     xmlString = RemoveParsedBody(bodyStartPoint, bodyEndPoint, foundElement, startTag, xmlString);
                 }
-                headElement.AddNested(newXmlElement);
+                headElement.AddNested(newNestedXmlElement);
             }
         }
-        
+
+        private string RemoveParsedBody(int bodyStartPoint, int bodyEndPoint, string foundElement, string tagName, string xmlString)
+        {
+            int startPos = bodyStartPoint - foundElement.Length;
+            int lengthToDelete = bodyEndPoint - bodyStartPoint + foundElement.Length + GetEndTag(tagName).Length;
+            return xmlString.Remove(startPos, lengthToDelete).Trim();
+        }
+
         /// <summary>
         /// Makes end tag based on the tag name
         /// </summary>
@@ -79,32 +98,9 @@ namespace TaskDEV4
                 string attrName = GetAttrName(elementString);
                 string attrValue = GetAttrValue(elementString);
                 xmlElement.AddAttr(attrName, attrValue);
+                // clearing string after adding attribute
                 int endPos = elementString.IndexOf(attrValue) + attrValue.Length;
                 elementString = elementString.Remove(1, endPos);
-            }
-        }
-
-        /// <summary>
-        /// Gets tagName from the line containing 
-        /// tag's name and all it's attributes
-        /// </summary>
-        /// <param name="XMLElement">
-        /// String which contains tagNames and it's attributes
-        /// </param>
-        /// <returns>
-        /// Returns tag's name
-        /// </returns>
-        public string GetStartTag(string XMLElement)
-        {
-            int startPoint = 1;
-            int endPoint = XMLElement.IndexOf(' ');
-            if (endPoint == -1)
-            {
-                return XMLElement.Substring(startPoint, XMLElement.IndexOf(">") - startPoint);
-            }
-            else
-            {
-                return XMLElement.Substring(startPoint, XMLElement.IndexOf(' ') - startPoint);
             }
         }
 
@@ -119,17 +115,35 @@ namespace TaskDEV4
             int endPos = elementString.IndexOf(quotes) + 1;
             int startPos = endPos;
             while (!elementString[endPos].Equals(quotes))
-            {          
+            {
                 endPos++;
             }
             return elementString.Substring(startPos, endPos - startPos);
         }
 
-        private string RemoveParsedBody(int bodyStartPoint, int bodyEndPoint, string foundElement, string tagName, string xmlString)
+        /// <summary>
+        /// Gets tagName from the line containing 
+        /// tag's name and all it's attributes
+        /// </summary>
+        /// <param name="XMLElement">
+        /// String which contains tagNames and it's attributes
+        /// </param>
+        /// <returns>
+        /// Returns tag's name
+        /// </returns>
+        public string GetStartTag(string XMLElement)
         {
-            int startPos = bodyStartPoint - foundElement.Length;
-            int lengthToDelete = bodyEndPoint - bodyStartPoint + foundElement.Length + GetEndTag(tagName).Length;
-            return xmlString.Remove(startPos, lengthToDelete).Trim();
+            XMLElement = XMLElement.Replace("<", string.Empty).Trim();
+            int startPoint = 0;
+            int endPoint = XMLElement.IndexOf(' ');
+            if (endPoint == -1)
+            {
+                return XMLElement.Substring(startPoint, XMLElement.IndexOf(">"));
+            }
+            else
+            {
+                return XMLElement.Substring(startPoint, XMLElement.IndexOf(' '));
+            }
         }
     }
 }
