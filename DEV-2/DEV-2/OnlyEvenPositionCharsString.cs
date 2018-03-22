@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace TaskDEV2
 {
@@ -7,10 +6,9 @@ namespace TaskDEV2
     /// Class contains methods for deleting all odd symbols 
     /// in the string using StringBilder
     /// </summary>
-    class OddIndexCharsDeleter
+    public class OddIndexCharsDeleter
     {
         StringBuilder processedStringBuilder;
-        StringBuilder outputEvenStringBuilder;
 
         /// <summary>
         /// Initializer for class's instances
@@ -22,15 +20,6 @@ namespace TaskDEV2
         public OddIndexCharsDeleter(string str)
         {
             processedStringBuilder = new StringBuilder(str);
-            outputEvenStringBuilder = new StringBuilder();
-        }
-
-        /// <summary>
-        /// Method prints string builder from GetEvenInderStringBuilder 
-        /// </summary>
-        public void PrintOnlyEvenPositionChars()
-        {
-            Console.WriteLine($"String with only even position chars - {outputEvenStringBuilder}");
         }
 
         /// <summary>
@@ -40,13 +29,14 @@ namespace TaskDEV2
         /// <returns>
         /// Returns made StringBuilder
         /// </returns>
-        public void MakeEvenIndexStringBulder()
+        public StringBuilder MakeEvenIndexStringBulder()
         {
+            StringBuilder outputEvenStringBuilder = new StringBuilder();
             for (int i = 0; i < processedStringBuilder.Length; i += 2)
             {
                 outputEvenStringBuilder.Append(processedStringBuilder[i]);
             }
+            return outputEvenStringBuilder;
         }
-        
     }
 }

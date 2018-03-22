@@ -16,8 +16,8 @@ namespace TaskDEV2
                 inputString = Console.ReadLine();
             }
             OddIndexCharsDeleter evener = new OddIndexCharsDeleter(inputString);
-            evener.MakeEvenIndexStringBulder();
-            evener.PrintOnlyEvenPositionChars();
+            StringBuilder onlyEvenPosCharsBuilder =  evener.MakeEvenIndexStringBulder();
+            Console.WriteLine(onlyEvenPosCharsBuilder); 
         }       
     }
 }
