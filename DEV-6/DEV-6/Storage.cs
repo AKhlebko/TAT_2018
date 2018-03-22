@@ -102,17 +102,15 @@ namespace DEV_6
         /// </param>
         public bool AddItems(string typeName, SaleItem items)
         {
-            if (Regex.IsMatch(typeName, @"[\\/:*?<>|]+") ||
-                Regex.IsMatch(items.Name, @"[\\/:*?<>|]+") ||
-                (typeName.Length == 0) || (items.Name.Length == 0))
+            if (Regex.IsMatch(typeName, @"[\\/:*?<>|]+") || (typeName.Length == 0))
             {
                 throw new FormatException("Invalid string format.");
             }
-            else if (items.Price <= 0 || items.Count <= 0)
+            else if (items.Price <= 0)
             {
                 throw new ArgumentOutOfRangeException(paramName: "Numbers can't be below or equal zero.");
             }
-            if (itemTypes.ContainsKey(typeName))
+            else if (itemTypes.ContainsKey(typeName))
             {
                 itemTypes[typeName].Add(items);
             }

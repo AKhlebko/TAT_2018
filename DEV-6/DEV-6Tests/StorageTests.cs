@@ -3,10 +3,6 @@ using DEV_6;
 
 namespace TerminalTests
 {
-    /// <summary>
-    /// Let myself not to write tests for the rest methods because they were tested
-    /// in other files
-    /// </summary>
     [TestFixture]
     class StorageTests
     {

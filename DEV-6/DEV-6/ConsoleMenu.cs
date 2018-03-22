@@ -115,7 +115,7 @@ namespace DEV_6
             float response = 0;
             string inputString = string.Empty;
             Console.Write("Input item's price: ");
-            while (!float.TryParse((inputString = Console.ReadLine()), out response) && (response <= 0))
+            while (!float.TryParse((inputString = Console.ReadLine()), out response) || (response <= 0))
             {
                 Console.Write("Input right format price: ");
                 inputString = Console.ReadLine();
@@ -128,7 +128,7 @@ namespace DEV_6
             int response = 0;
             Console.Write("Input number of items: ");
             string inputString = Console.ReadLine();
-            while (!int.TryParse((inputString), out response) && (response <= 0))
+            while (!int.TryParse((inputString), out response) || (response <= 0))
             {
                 Console.Write("Input right number of items: ");
                 inputString = Console.ReadLine();
