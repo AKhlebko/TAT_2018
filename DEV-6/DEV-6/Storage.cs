@@ -7,7 +7,7 @@ namespace DEV_6
     /// <summary>
     /// Class for storing SaleItems and for interacting with them
     /// </summary>
-    public class Storage
+    public class Storage : IStorageActions
     {
         private Dictionary<string, List<SaleItem>> itemTypes;
 

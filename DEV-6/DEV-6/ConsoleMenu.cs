@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 
 namespace DEV_6
 {
     /// <summary>
-    /// Class provides user with an interface for interacting 
+    /// Class provides user with an UI for interacting 
     /// with the storage through the text menu.
     /// </summary>
     class ConsoleMenu
@@ -17,15 +16,26 @@ namespace DEV_6
             "5) average price (choosen type)\n" +
             "6) Exit\n" +
             "Input action number: ";
-        private IStorageCommands terminal;
+        private Terminal terminal;
+        private AveragePriceCounter averagePriceCounter;
+        private AveragePriceInTypeCounter averageTypePriceCounter;
+        private TypeCounter typesCounter;
+        private ItemsCounter itemsCounter;
+        private ItemsAdder itemsAdder;
 
-        public void SetCommandTerminal(IStorageCommands terminal)
+        public ConsoleMenu(Storage storage)
         {
-            this.terminal = terminal;
+            terminal = new Terminal();
+            averageTypePriceCounter = new AveragePriceInTypeCounter(storage);
+            averagePriceCounter = new AveragePriceCounter(storage);
+            typesCounter = new TypeCounter(storage);
+            itemsCounter = new ItemsCounter(storage);
+            itemsAdder = new ItemsAdder(storage);
         }
 
         /// <summary>
-        /// Endless cycle for rendering text menu.
+        /// Endless cycle for rendering text menu
+        /// switching between commanders and executing commands
         /// </summary>
         public void Work()
         {
@@ -36,104 +46,26 @@ namespace DEV_6
                 switch (actNum)
                 {
                     case 1:
-                        string typeName = GetAddItemsType();
-                        SaleItem items = GetItemsToAdd();
-                        if (ConfirmAdding(typeName, items))
-                        {
-                            terminal.AddItems(typeName, items);
-                            Console.WriteLine($"You've added {items} of {typeName}.");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Adding've been aborted.");
-                        }
+                        terminal.setCommand(itemsAdder);
                         break;
                     case 2:
-                        int typesNum = terminal.CountTypes();
-                        Console.WriteLine($"Right now there are {typesNum} types of products in the storage.");
+                        terminal.setCommand(typesCounter);
                         break;
                     case 3:
-                        long itemsNum = terminal.CountAll();
-                        Console.WriteLine($"Right now there are {itemsNum} in the storage.");
+                        terminal.setCommand(itemsCounter);
                         break;
                     case 4:
-                        double averagePrice = terminal.AveragePrice();
-                        Console.WriteLine($"Average items' price in the storage is {averagePrice}.");
+                        terminal.setCommand(averagePriceCounter);
                         break;
                     case 5:
-                        Console.Write("Input type's name to calculate average price: ");
-                        typeName = Console.ReadLine();
-                        averagePrice = terminal.AveragePrice(typeName);
-                        if (averagePrice != -1)
-                        {
-                            Console.WriteLine($"Average {typeName}'s price in the storage is {averagePrice}.");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"There is no type {typeName} in the storage.");
-                        }
+                        terminal.setCommand(averageTypePriceCounter);
                         break;
                     case 6:
                         Console.WriteLine("Exiting terminal...");
                         return;
                 }
+                terminal.DoCommand();
             }
-        }
-
-        private string GetAddItemsType()
-        {
-            Console.Write($"Input type name, please: ");
-            string inputString = string.Empty;
-            while (Regex.IsMatch((inputString = Console.ReadLine()), @"[\\/:*?<>|]+"))
-            {
-                Console.Write($"Input right format type name, please: ");
-            }
-            return inputString;
-        }
-
-        private SaleItem GetItemsToAdd()
-        {
-            string name = GetItemName();
-            int number = GetNumberToOfItemsToAdd();
-            float price = GetAddItemPrice();
-            return new SaleItem(name, number, price);
-        }
-
-        private string GetItemName()
-        {
-            Console.Write($"Input product name, please: ");
-            string inputString = string.Empty;
-            while (Regex.IsMatch((inputString = Console.ReadLine()), @"[\\/:*?<>|]+"))
-            {
-                Console.Write($"Input right format product name, please: ");
-            }
-            return inputString;
-        }
-
-        private float GetAddItemPrice()
-        {
-            float response = 0;
-            string inputString = string.Empty;
-            Console.Write("Input item's price: ");
-            while (!float.TryParse((inputString = Console.ReadLine()), out response) || (response <= 0))
-            {
-                Console.Write("Input right format price: ");
-                inputString = Console.ReadLine();
-            }
-            return response;
-        }
-
-        private int GetNumberToOfItemsToAdd()
-        {
-            int response = 0;
-            Console.Write("Input number of items: ");
-            string inputString = Console.ReadLine();
-            while (!int.TryParse((inputString), out response) || (response <= 0))
-            {
-                Console.Write("Input right number of items: ");
-                inputString = Console.ReadLine();
-            }
-            return response;
         }
 
         private int GetActionNumer()
@@ -150,20 +82,6 @@ namespace DEV_6
                     }
                 }
                 Console.Write("Input right number of Action: ");
-            }
-        }
-
-        private bool ConfirmAdding(string typeName, SaleItem products)
-        {
-            Console.Write($"Do you want to add {products} into {typeName} type [Yes/No]: ");
-            string confirmation = Console.ReadLine().ToLower().Trim();
-            if (confirmation == "yes")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
     }

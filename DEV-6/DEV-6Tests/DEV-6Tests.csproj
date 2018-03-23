@@ -39,8 +39,8 @@
   <ItemGroup>
     <Compile Include="SaleItemTests.cs" />
     <Compile Include="StorageTests.cs" />
-    <Compile Include="TerminalTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TerminalTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

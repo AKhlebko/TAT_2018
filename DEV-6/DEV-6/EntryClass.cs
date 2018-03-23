@@ -9,9 +9,7 @@ namespace DEV_6
             try
             {
                 Storage storage = new Storage();
-                Terminal terminal = new Terminal(storage);
-                ConsoleMenu menu = new ConsoleMenu();
-                menu.SetCommandTerminal(terminal);
+                ConsoleMenu menu = new ConsoleMenu(storage);
                 menu.Work();
             }
             catch (Exception ex)

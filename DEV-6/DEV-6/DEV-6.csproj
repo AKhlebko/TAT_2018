@@ -44,13 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IStorageCommands.cs" />
+    <Compile Include="AveragePriceCounter.cs" />
+    <Compile Include="AveragePriceInTypeCounter.cs" />
+    <Compile Include="ICommand.cs" />
     <Compile Include="ConsoleMenu.cs" />
+    <Compile Include="IStorageActions.cs" />
+    <Compile Include="ItemsAdder.cs" />
+    <Compile Include="ItemsCounter.cs" />
     <Compile Include="SaleItem.cs" />
     <Compile Include="EntryClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage.cs" />
     <Compile Include="Terminal.cs" />
+    <Compile Include="TypeCounter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
