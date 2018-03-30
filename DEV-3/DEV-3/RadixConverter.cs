@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 using System.Text;
 
 namespace taskDEV3
@@ -7,7 +8,7 @@ namespace taskDEV3
     /// Class stores decimal number and
     /// has method for returning this number converted into another radix
     /// </summary>
-    class RadixConverter
+    public class RadixConverter
     {
         // if modulo > 9 -> DigitCode = code('A') + (mudulo - 10);
         private const int AsciiRadixDigitBase = 55;
@@ -28,6 +29,14 @@ namespace taskDEV3
         /// </returns>
         public StringBuilder GetNewRadixNumber()
         {
+            if (newRadix < 2 || newRadix > 20)
+            {
+                throw new ArgumentOutOfRangeException(paramName: "Invalid radix range");
+            }
+            if (decimalNumber.Sign == -1)
+            {
+                throw new ArgumentOutOfRangeException(paramName: "Invalid decimal range");
+            }
             StringBuilder numberInNewRadix = new StringBuilder();
             BigInteger bufferDecimalNumber = decimalNumber;
             if (bufferDecimalNumber.IsZero)

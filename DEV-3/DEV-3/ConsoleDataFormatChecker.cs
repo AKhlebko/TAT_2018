@@ -7,7 +7,7 @@ namespace taskDEV3
     /// Class has method for checking 
     /// commandLineArgs' format
     /// </summary>
-    class ConsoleDataFormatChecker
+    public class ConsoleDataFormatChecker
     {
         string[] commandLineArgs;
         
@@ -28,9 +28,9 @@ namespace taskDEV3
             bool response = true;
             try
             {
-                if (commandLineArgs.Length < 2 || commandLineArgs == null)
+                if (commandLineArgs == null || commandLineArgs.Length < 2)
                 {
-                    throw new ArgumentOutOfRangeException("Wrong number of arguments.");
+                    throw new IndexOutOfRangeException("Wrong number of arguments.");
                 }
                 BigInteger decimalNumber = BigInteger.Parse(commandLineArgs[0]);
                 if (decimalNumber.Sign == -1)
