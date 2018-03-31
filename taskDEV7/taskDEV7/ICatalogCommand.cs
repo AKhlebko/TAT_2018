@@ -2,6 +2,6 @@
 {
     public interface ICatalogCommand<T>
     {
-        T execute();
+        T execute(Car car);
     }
 }

@@ -7,7 +7,7 @@ namespace DEV_7
     /// Class volvo
     /// </summary>
     [JsonObject]
-    class Volvo : Car
+    public class Volvo : Car
     {
         private static List<string> models = new List<string>();
         private static List<string> engineTypes = new List<string>();
@@ -33,31 +33,37 @@ namespace DEV_7
             return base.Equals(obj);
         }
 
-        public static void AddAttrs(Car mercedes)
+        /// <summary>
+        /// Adds object's attributes to menu lists if needed
+        /// </summary>
+        /// <param name="volvo">
+        /// Object, which attrs will be added
+        /// </param>
+        public static void AddAttrs(Volvo volvo)
         {
-            if (!bodyTypes.Contains(mercedes.BodyType))
+            if (!bodyTypes.Contains(volvo.BodyType))
             {
-                bodyTypes.Add(mercedes.BodyType);
+                bodyTypes.Add(volvo.BodyType);
             }
-            if (!engineTypes.Contains(mercedes.EngineType))
+            if (!engineTypes.Contains(volvo.EngineType))
             {
-                engineTypes.Add(mercedes.EngineType);
+                engineTypes.Add(volvo.EngineType);
             }
-            if (!transmissionTypes.Contains(mercedes.TransmissionType))
+            if (!transmissionTypes.Contains(volvo.TransmissionType))
             {
-                transmissionTypes.Add(mercedes.TransmissionType);
+                transmissionTypes.Add(volvo.TransmissionType);
             }
-            if (!salonTypes.Contains(mercedes.SalonType))
+            if (!salonTypes.Contains(volvo.SalonType))
             {
-                salonTypes.Add(mercedes.SalonType);
+                salonTypes.Add(volvo.SalonType);
             }
-            if (!climateControls.Contains(mercedes.ClimateControl))
+            if (!climateControls.Contains(volvo.ClimateControl))
             {
-                climateControls.Add(mercedes.ClimateControl);
+                climateControls.Add(volvo.ClimateControl);
             }
-            if (!models.Contains(mercedes.Model))
+            if (!models.Contains(volvo.Model))
             {
-                models.Add(mercedes.Model);
+                models.Add(volvo.Model);
             }
         }
     }

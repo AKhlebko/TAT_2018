@@ -7,15 +7,16 @@ namespace DEV_7
     /// <summary>
     /// Class storage for storing cars
     /// </summary>
-    class Storage
+    public class Storage
     {
         private CarBuilder builder = null;
+        private string storagePath = string.Empty;
         private List<Car> carsInStorage;
         private List<string> brands = new List<string>(new string[] { "Mercedes", "Lada", "Volvo" });
-        public Storage()
+        public Storage(string pStoragePath)
         {
-            LoadCars();
-
+            carsInStorage = null;
+            storagePath = pStoragePath;
         }
 
         /// <summary>
@@ -32,7 +33,7 @@ namespace DEV_7
             {
                 TypeNameHandling = TypeNameHandling.All
             };
-            Car[] newList = JsonConvert.DeserializeObject<Car[]>(File.ReadAllText(@"storage.json"), settings);
+            Car[] newList = JsonConvert.DeserializeObject<Car[]>(File.ReadAllText(storagePath), settings);
             carsInStorage = new List<Car>();
             foreach (Car car in newList)
             {

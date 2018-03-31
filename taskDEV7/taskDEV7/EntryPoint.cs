@@ -4,8 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Catalog catalog = new Catalog();
-            Storage storage = new Storage();
+            Catalog catalog = new Catalog(@"cars.json");
+            Storage storage = new Storage(@"storage.json");
+            storage.ReloadCars();
 
             SimilarCarsToBuyGetter similarCarsToBuyGetter = new SimilarCarsToBuyGetter(catalog);
             CarInStorageChecker carInStorageChecker = new CarInStorageChecker();

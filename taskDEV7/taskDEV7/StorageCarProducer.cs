@@ -6,12 +6,10 @@
     class StorageCarProducer : IStorageCommand<bool>
     {
         private Storage storage;
-        private Car carToProduce;
 
         public StorageCarProducer()
         {
             storage = null;
-            carToProduce = null;
         }
 
         /// <summary>
@@ -25,18 +23,7 @@
             this.storage = pStorage;
         }
 
-        /// <summary>
-        /// Car to produce setter
-        /// </summary>
-        /// <param name="pCar">
-        /// car for adding to the storage
-        /// </param>
-        public void SetCarToProduce(Car pCar)
-        {
-            this.carToProduce = pCar;
-        }
-
-        public bool Execute()
+        public bool Execute(Car carToProduce)
         {
             storage.ProduceCar(carToProduce);
             return true;

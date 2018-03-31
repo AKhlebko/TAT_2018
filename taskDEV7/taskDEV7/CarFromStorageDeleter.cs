@@ -6,12 +6,10 @@
     class CarFromStorageDeleter : IStorageCommand<bool>
     {
         private Storage storage;
-        private Car carToDelete;
 
         public CarFromStorageDeleter()
         {
             storage = null;
-            carToDelete = null;
         }
 
         /// <summary>
@@ -22,21 +20,10 @@
         /// </param>
         public void SetStorage(Storage pStorage)
         {
-            this.storage = pStorage;
+            storage = pStorage;
         }
 
-        /// <summary>
-        /// Method to set car to delete
-        /// </summary>
-        /// <param name="pCar">
-        /// car to delete
-        /// </param>
-        public void SetCarToDelete(Car pCar)
-        {
-            this.carToDelete = pCar;
-        }
-
-        public bool Execute()
+        public bool Execute(Car carToDelete)
         {
             return storage.DeleteBoughtCar(carToDelete);
         }

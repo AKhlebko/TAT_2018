@@ -2,6 +2,6 @@
 {
     public interface IStorageCommand<T>
     {
-        T Execute();
+        T Execute(Car car);
     }
 }

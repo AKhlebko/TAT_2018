@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace DEV_7
@@ -8,7 +7,7 @@ namespace DEV_7
     /// Class Lada 
     /// </summary>
     [JsonObject]
-    class Lada : Car
+    public class Lada : Car
     {
         private static List<string> models = new List<string>();
         private static List<string> engineTypes = new List<string>();
@@ -34,31 +33,38 @@ namespace DEV_7
             return base.Equals(obj);
         }
 
-        public static void AddAttrs(Car mercedes)
+
+        /// <summary>
+        /// Adds object's attributes to menu lists if needed
+        /// </summary>
+        /// <param name="lada">
+        /// Object, which attrs will be added
+        /// </param>
+        public static void AddAttrs(Lada lada)
         {
-            if (!bodyTypes.Contains(mercedes.BodyType))
+            if (!bodyTypes.Contains(lada.BodyType))
             {
-                bodyTypes.Add(mercedes.BodyType);
+                bodyTypes.Add(lada.BodyType);
             }
-            if (!engineTypes.Contains(mercedes.EngineType))
+            if (!engineTypes.Contains(lada.EngineType))
             {
-                engineTypes.Add(mercedes.EngineType);
+                engineTypes.Add(lada.EngineType);
             }
-            if (!transmissionTypes.Contains(mercedes.TransmissionType))
+            if (!transmissionTypes.Contains(lada.TransmissionType))
             {
-                transmissionTypes.Add(mercedes.TransmissionType);
+                transmissionTypes.Add(lada.TransmissionType);
             }
-            if (!salonTypes.Contains(mercedes.SalonType))
+            if (!salonTypes.Contains(lada.SalonType))
             {
-                salonTypes.Add(mercedes.SalonType);
+                salonTypes.Add(lada.SalonType);
             }
-            if (!climateControls.Contains(mercedes.ClimateControl))
+            if (!climateControls.Contains(lada.ClimateControl))
             {
-                climateControls.Add(mercedes.ClimateControl);
+                climateControls.Add(lada.ClimateControl);
             }
-            if (!models.Contains(mercedes.Model))
+            if (!models.Contains(lada.Model))
             {
-                models.Add(mercedes.Model);
+                models.Add(lada.Model);
             }
         }
     }

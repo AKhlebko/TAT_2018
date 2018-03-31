@@ -8,19 +8,13 @@ namespace DEV_7
     class SimilarCarsToBuyGetter : ICatalogCommand<List<Car>>
     {
         private Catalog catalog;
-        private Car userChoice;
 
         public SimilarCarsToBuyGetter(Catalog catalog)
         {
             this.catalog = catalog;
         }
 
-        public void setUserChoice(Car userChoice)
-        {
-            this.userChoice = userChoice;
-        }
-
-        public List<Car> execute()
+        public List<Car> execute(Car userChoice)
         {
             return catalog.GetSimilarToBuy(userChoice);
         }

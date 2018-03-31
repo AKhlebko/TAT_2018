@@ -23,7 +23,7 @@
             this.storage = pStorage;
         }
         
-        public bool Execute()
+        public bool Execute(Car car)
         {
             storage.SaveToJSON();
             return true;

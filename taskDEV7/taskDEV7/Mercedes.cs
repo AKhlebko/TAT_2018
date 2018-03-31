@@ -33,7 +33,13 @@ namespace DEV_7
             return base.Equals(obj);
         }
 
-        public static void AddAttrs(Car mercedes)
+        /// <summary>
+        /// Adds object's attributes to menu lists if needed
+        /// </summary>
+        /// <param name="mercedes">
+        /// Object, which attrs will be added
+        /// </param>
+        public static void AddAttrs(Mercedes mercedes)
         {
             if (!bodyTypes.Contains(mercedes.BodyType))
             {

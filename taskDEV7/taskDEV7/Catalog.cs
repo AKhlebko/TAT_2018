@@ -8,19 +8,21 @@ namespace DEV_7
     /// <summary>
     /// Class catalog for storing cars list and interacting with it
     /// </summary>
-    class Catalog
+    public class Catalog
     {
         private CarBuilder builder = null;
+        private string catalogPath = string.Empty;
         private List<Car> carsInCatalog;
         private List<string> brands = new List<string>(new string[] { "Mercedes", "Lada", "Volvo" });
 
-        public Catalog()
+        public Catalog(string pCatalogPath)
         {
+            catalogPath = pCatalogPath;
             JsonSerializerSettings settings = new JsonSerializerSettings()
             {
-                TypeNameHandling = Newtonsoft.Json.TypeNameHandling.All
+                TypeNameHandling = TypeNameHandling.All
             };
-            Car[] newList = JsonConvert.DeserializeObject<Car[]>(File.ReadAllText(@"cars.json"), settings);
+            Car[] newList = JsonConvert.DeserializeObject<Car[]>(File.ReadAllText(catalogPath), settings);
             carsInCatalog = new List<Car>();
             foreach (Car car in newList)
             {
@@ -31,21 +33,21 @@ namespace DEV_7
                         Car mercedes = builder.Create();
                         FillFieldsWithCarAttrs(mercedes, car);
                         carsInCatalog.Add(mercedes);
-                        Mercedes.AddAttrs(mercedes);
+                        Mercedes.AddAttrs((Mercedes)mercedes);
                         break;
                     case "Lada":
                         builder = new LadaBuilder();
                         Car lada = builder.Create();
                         FillFieldsWithCarAttrs(lada, car);
                         carsInCatalog.Add(lada);
-                        Lada.AddAttrs(lada);
+                        Lada.AddAttrs((Lada)lada);
                         break;
                     case "Volvo":
                         builder = new VolvoBuilder();
                         Car volvo = builder.Create();
                         FillFieldsWithCarAttrs(volvo, car);
                         carsInCatalog.Add(volvo);
-                        Volvo.AddAttrs(volvo);
+                        Volvo.AddAttrs((Volvo)volvo);
                         break;
                 }
             }

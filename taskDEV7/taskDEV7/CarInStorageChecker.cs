@@ -6,12 +6,10 @@
     class CarInStorageChecker : IStorageCommand<bool>
     {
         private Storage storage;
-        private Car carToFind;
 
         public CarInStorageChecker()
         {
             storage = null;
-            carToFind = null;
         }
         
         /// <summary>
@@ -25,18 +23,7 @@
             this.storage = storage;
         }
 
-        /// <summary>
-        /// Car to find setter
-        /// </summary>
-        /// <param name="userChoice">
-        /// car to find
-        /// </param>
-        public void SetCarToFind(Car userChoice)
-        {
-            carToFind = userChoice;
-        }
-
-        public bool Execute()
+        public bool Execute(Car carToFind)
         {
             return storage.IsInStorage(carToFind);
         }

@@ -9,17 +9,46 @@ namespace DEV_7
         private string menuString = "Input car's parameters and we'll try to find smth for you.";
         ICatalogCommand<List<Car>> getSimilarCarsCommand;
         IStorageCommand<bool> checkIsCarInStorageCommand;
-        IStorageCommand<bool>  deleteCarInStorageCommand;
+        IStorageCommand<bool> deleteCarInStorageCommand;
         IStorageCommand<bool> storageCarProduceCommand;
         IStorageCommand<bool> storageSaveCommand;
         IStorageCommand<bool> storageReloader;
 
-        public ICatalogCommand<List<Car>> GetSimilarCarsCommand { get => getSimilarCarsCommand; set => getSimilarCarsCommand = value; }
-        public IStorageCommand<bool> CheckIsCarInStorageCommand { get => checkIsCarInStorageCommand; set => checkIsCarInStorageCommand = value; }
-        public IStorageCommand<bool> DeleteCarInStorageCommand { get => deleteCarInStorageCommand; set => deleteCarInStorageCommand = value; }
-        public IStorageCommand<bool> StorageCarProduceCommand { get => storageCarProduceCommand; set => storageCarProduceCommand = value; }
-        public IStorageCommand<bool> StorageSaveCommand { get => storageSaveCommand; set => storageSaveCommand = value; }
-        public IStorageCommand<bool> StorageReloader { get => storageReloader; set => storageReloader = value; }
+        public ICatalogCommand<List<Car>> GetSimilarCarsCommand
+        {
+            get => getSimilarCarsCommand;
+            set => getSimilarCarsCommand = value;
+        }
+
+        public IStorageCommand<bool> CheckIsCarInStorageCommand
+        {
+            get => checkIsCarInStorageCommand;
+            set => checkIsCarInStorageCommand = value;
+        }
+
+        public IStorageCommand<bool> DeleteCarInStorageCommand
+        {
+            get => deleteCarInStorageCommand;
+            set => deleteCarInStorageCommand = value;
+        }
+
+        public IStorageCommand<bool> StorageCarProduceCommand
+        {
+            get => storageCarProduceCommand;
+            set => storageCarProduceCommand = value;
+        }
+
+        public IStorageCommand<bool> StorageSaveCommand
+        {
+            get => storageSaveCommand;
+            set => storageSaveCommand = value;
+        }
+
+        public IStorageCommand<bool> StorageReloader
+        {
+            get => storageReloader;
+            set => storageReloader = value;
+        }
 
         public void Work()
         {
@@ -30,27 +59,23 @@ namespace DEV_7
                 builder = GetBuilder(brandName);
                 Car userChoiceCar = builder.Create();
                 userChoiceCar.FillParametersByUser();
-                (getSimilarCarsCommand as SimilarCarsToBuyGetter).setUserChoice(userChoiceCar);
-                List<Car> suitableCars = getSimilarCarsCommand.execute();
+                List<Car> suitableCars = getSimilarCarsCommand.execute(userChoiceCar);
                 PrintAvailableCars(suitableCars);
                 int ChosenCarNumber = GetActionBetween(1, suitableCars.Count);
                 if (ChosenCarNumber != -1)
                 {
-                    (CheckIsCarInStorageCommand as CarInStorageChecker).SetCarToFind(suitableCars[ChosenCarNumber - 1]);
-                    if (CheckIsCarInStorageCommand.Execute())
+                    if (CheckIsCarInStorageCommand.Execute(suitableCars[ChosenCarNumber - 1]))
                     {
-                        (deleteCarInStorageCommand as CarFromStorageDeleter).SetCarToDelete(suitableCars[ChosenCarNumber - 1]);
-                        deleteCarInStorageCommand.Execute();
-                        storageSaveCommand.Execute();
+                        deleteCarInStorageCommand.Execute(suitableCars[ChosenCarNumber - 1]);
+                        storageSaveCommand.Execute(suitableCars[ChosenCarNumber - 1]);
                         Console.WriteLine("Deal, your car will be right here in 15 minutes.");
                     }
                     else
                     {
-                        (storageCarProduceCommand as StorageCarProducer).SetCarToProduce(suitableCars[ChosenCarNumber - 1]);
-                        storageCarProduceCommand.Execute();
+                        storageCarProduceCommand.Execute(suitableCars[ChosenCarNumber - 1]);
                         Console.WriteLine("Your car will be produced.");
-                        storageSaveCommand.Execute();
-                        storageReloader.Execute();
+                        storageSaveCommand.Execute(suitableCars[ChosenCarNumber - 1]);
+                        storageReloader.Execute(new Car());
                     }
                 }
                 else
