@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DEV_8
 {
-    class GetMostRelevantFemaleNameCommand : ICommand
+    /// <summary>
+    /// Command for getting most frequent female name
+    /// </summary>
+    class GetMostFrequentFemaleNameCommand : ICommand
     {
         public PeopleDataBase DataBase { get; set; }
         public string MostRelevanceName { get; set; }
@@ -15,7 +14,7 @@ namespace DEV_8
         {
             try
             {
-                MostRelevanceName = DataBase.GetMostRelevantFemaleName();
+                Console.WriteLine($"Most relevant female name is {DataBase.GetMostFrequentFemaleName()}");
             }
             catch
             {

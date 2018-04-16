@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DEV_8
 {
-    class GetNameSakesCommand : ICommand
+    /// <summary>
+    /// Command for getting namesakes for a person
+    /// </summary>
+    class GetNamesakesCommand : ICommand
     {
         PeopleDataBase DataBase { get; set; }
         public Person PersonToFindNamesakes { get; set; }
@@ -16,7 +15,7 @@ namespace DEV_8
         {
             try
             { 
-                Namesakes = DataBase.GetNameSakes(PersonToFindNamesakes);
+                Namesakes = DataBase.GetNamesakes(PersonToFindNamesakes);
             }
             catch
             {

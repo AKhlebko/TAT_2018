@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DEV_8
 {
+    /// <summary>
+    /// Event argument which stores info about namesakes
+    /// </summary>
     public class NamesakeEventArg : EventArgs
     {
         public List<Person> Namesakes { get; set; }

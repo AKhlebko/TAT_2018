@@ -43,9 +43,9 @@
   <ItemGroup>
     <Compile Include="AddAnotherPersonToDataBaseCommand.cs" />
     <Compile Include="GetAverageAgeCommand.cs" />
-    <Compile Include="GetMostRelevantFemaleNameCommand.cs" />
-    <Compile Include="GetNameSakesCommand.cs" />
-    <Compile Include="GetOldestPersonsCommand.cs" />
+    <Compile Include="GetMostFrequentFemaleNameCommand.cs" />
+    <Compile Include="GetNamesakesCommand.cs" />
+    <Compile Include="GetOldestPeopleCommand.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="NamesakeEventArg.cs" />
@@ -53,6 +53,7 @@
     <Compile Include="Person.cs" />
     <Compile Include="MainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Terminal.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

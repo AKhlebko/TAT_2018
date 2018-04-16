@@ -2,6 +2,9 @@
 
 namespace DEV_8
 {
+    /// <summary>
+    /// Command for getting average age in the database
+    /// </summary>
     class GetAverageAgeCommand : ICommand
     {
         public PeopleDataBase DataBase { get; set; }
@@ -11,7 +14,7 @@ namespace DEV_8
         {
             try
             {
-                AverageAge = DataBase.GetAverageAge();
+                Console.WriteLine($"Average peoples' age in the database is {DataBase.GetAverageAge()}");
             }
             catch
             {

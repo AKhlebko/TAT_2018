@@ -2,6 +2,9 @@
 
 namespace DEV_8
 {
+    /// <summary>
+    /// Class for storing info about each person
+    /// </summary>
     [Serializable]
     public class Person
     {

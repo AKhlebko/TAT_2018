@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DEV_8
 {
@@ -33,14 +29,14 @@ namespace DEV_8
                 GetAverageAgeCommand getAverageAgeCommand = new GetAverageAgeCommand();
                 getAverageAgeCommand.DataBase = dataBase;
 
-                GetOldestPersonsCommand getOldestPersonsCommand = new GetOldestPersonsCommand();
+                GetOldestPeopleCommand getOldestPersonsCommand = new GetOldestPeopleCommand();
                 getOldestPersonsCommand.DataBase = dataBase;
 
-                GetMostRelevantFemaleNameCommand getMostRelevantFemaleNameCommand = new GetMostRelevantFemaleNameCommand();
+                GetMostFrequentFemaleNameCommand getMostRelevantFemaleNameCommand = new GetMostFrequentFemaleNameCommand();
                 getMostRelevantFemaleNameCommand.DataBase = dataBase;
 
                 Menu menu = new Menu();
-                menu.AddPersonToDataBase = addAnotherPersonToDataBaseCommand;
+                menu.PeopleToDataBaseAdder = addAnotherPersonToDataBaseCommand;
                 menu.AverageAgeGetter = getAverageAgeCommand;
                 menu.OldestPersonsGetter = getOldestPersonsCommand;
                 menu.MostRelevantFemaleNameGetter = getMostRelevantFemaleNameCommand;
@@ -58,12 +54,12 @@ namespace DEV_8
 
         static void NamesakesToConsole(object sender, NamesakeEventArg e)
         {
-            Console.WriteLine($"Namesakes are: {e}");
+            Console.WriteLine($"\nNamesakes for input person are: \n{e}");
         }
 
         static void NamesakesToFile(object sender, NamesakeEventArg e)
         {
-            File.WriteAllText("namesakes.txt", $"Namesakes are: {e}");
+            File.WriteAllText("namesakes.txt", $"Namesakes for input person are: \n{e}");
         }
     }
 }
