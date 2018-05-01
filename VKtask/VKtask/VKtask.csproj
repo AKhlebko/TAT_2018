@@ -49,7 +49,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ObjectPages\AudiosPage.cs" />
-    <Compile Include="ObjectPages\CommunitiesPage.cs" />
     <Compile Include="ObjectPages\CurrentVKPage.cs" />
     <Compile Include="ObjectPages\DialogsPage.cs" />
     <Compile Include="ObjectPages\FailedToLoginPage.cs" />

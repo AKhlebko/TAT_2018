@@ -32,7 +32,7 @@ namespace VKtask.ObjectPages
             userLoginInputForm.SendKeys(userLogin);
             userPasswordInputForm.SendKeys(userPassword);
             loginPushButtion.Click();
-            if (Driver.PageSource.Contains("Please check that you have entered your login and password correctly."))
+            if (Driver.PageSource.Contains("Please check that you have entered your"))
             {
                 return new FailedToLoginPage(Driver);
             }

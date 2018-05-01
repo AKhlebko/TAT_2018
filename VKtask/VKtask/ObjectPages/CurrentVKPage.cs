@@ -11,7 +11,6 @@ namespace VKtask.ObjectPages
     {
         MESSAGES,
         FRIENDS,
-        COMMUNITIES,
         AUDIOS,
         NEWS
     }
@@ -39,10 +38,6 @@ namespace VKtask.ObjectPages
                 case LeftPanelButtons.FRIENDS:
                     Driver.FindElement(By.XPath(Selectors.LFriendsButton)).Click();
                     pageToReturn = new FriendsPage(Driver);
-                    break;
-                case LeftPanelButtons.COMMUNITIES:
-                    Driver.FindElement(By.XPath(Selectors.LCommunitiesButton)).Click();
-                    pageToReturn = new CommunitiesPage(Driver);
                     break;
                 case LeftPanelButtons.MESSAGES:
                     Driver.FindElement(By.XPath(Selectors.LMessageButton)).Click();

@@ -18,14 +18,24 @@ namespace VKtask
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(100);
             CurrentVKPage currentPage = new LoginPage(driver);
-            currentPage = (currentPage as LoginPage).LogIn("375336609897", "OTBIr2ba6ZyUSdf0YwEKH0j5");
+            currentPage = (currentPage as LoginPage).LogIn("375336609897", "OTBIrw2ba6ZyUSdf0YwEKH0j5");
             if (currentPage.GetType() == typeof(NewsPage))
             {
-                currentPage = (currentPage as NewsPage).goToMessages();
-                (currentPage as DialogsPage).GoToDialog("Anton Khlebko");
-                (currentPage as DialogsPage).SendMessage("Hi, how's it going?");
+                AudiosPage userAudios = (AudiosPage)currentPage.GoTo(LeftPanelButtons.AUDIOS);
+                userAudios.ShuffleAndPlay();
+
+                FriendsPage userFriends = (FriendsPage)currentPage.GoTo(LeftPanelButtons.FRIENDS);
+                userFriends.PrintFiveFirstFriends();
+
+                DialogsPage userDialogs = (DialogsPage)currentPage.GoTo(LeftPanelButtons.MESSAGES);
+                userDialogs.GoToDialog("Ilya Obukhov");
+                userDialogs.SendMessage("Annoying Ilya while testing automated bot");
             }
-            Thread.Sleep(10000);
+            else
+            {
+                currentPage.GoToURL("https://www.youtube.com");
+            }
+            Thread.Sleep(100000);
             driver.Close();
             driver.Quit();
             return;

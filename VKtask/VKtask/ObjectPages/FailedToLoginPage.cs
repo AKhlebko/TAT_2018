@@ -17,7 +17,7 @@ namespace VKtask.ObjectPages
         {
             userLoginInputForm = Driver.FindElement(By.XPath(Selectors.LoginInputForm));
             userPasswordInputForm = Driver.FindElement(By.XPath(Selectors.LoginPasswordForm));
-            loginPushButtion.FindElement(By.XPath(Selectors.LoginPushButton));
+            loginPushButtion = Driver.FindElement(By.XPath(Selectors.LoginPushButtonFailedPage));
         }
 
         public CurrentVKPage LogIn(string userLogin, string userPassword)

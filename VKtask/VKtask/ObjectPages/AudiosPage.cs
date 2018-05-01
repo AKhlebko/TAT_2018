@@ -8,7 +8,12 @@ namespace VKtask.ObjectPages
 
         public AudiosPage(IWebDriver driver) : base(driver)
         {
+            shuffleAll = Driver.FindElement(By.XPath(Selectors.ShuffleAndPlayMusicButton));
+        }
 
+        public void ShuffleAndPlay()
+        {
+            shuffleAll.Click();
         }
     }
 }
