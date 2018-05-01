@@ -3,6 +3,9 @@ using VKtask.Selectors;
 
 namespace VKtask.ObjectPages
 {
+    /// <summary>
+    /// User's audios page
+    /// </summary>
     public class AudiosPage : CurrentVKPage
     {
         private IWebElement shuffleAll;

@@ -3,6 +3,9 @@ using VKtask.Selectors;
 
 namespace VKtask.ObjectPages
 {
+    /// <summary>
+    /// Buttons in the left part of each page
+    /// </summary>
     public enum LeftPanelButtons
     {
         PROFILE,
@@ -12,6 +15,9 @@ namespace VKtask.ObjectPages
         NEWS
     }
 
+    /// <summary>
+    /// Base VKpage class and it's basic methods
+    /// </summary>
     public abstract class CurrentVKPage
     {
         public IWebDriver Driver { get; set; }
@@ -27,6 +33,15 @@ namespace VKtask.ObjectPages
             Driver.Navigate().GoToUrl(URL);
         }
 
+        /// <summary>
+        /// Switching between pages through left side panel
+        /// </summary>
+        /// <param name="button">
+        /// button to press
+        /// </param>
+        /// <returns>
+        /// Page's object of needed type
+        /// </returns>
         public CurrentVKPage GoTo(LeftPanelButtons button)
         {
             if (GetType() == typeof(LoginPage)) return this;
@@ -53,6 +68,9 @@ namespace VKtask.ObjectPages
             return pageToReturn;
         }
 
+        /// <summary>
+        /// Logs out of the account
+        /// </summary>
         public void LogOut()
         {
             if (this.GetType() == typeof(LoginPage) || this.GetType() == typeof(FailedToLoginPage)) return;

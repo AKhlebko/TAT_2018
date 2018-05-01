@@ -5,6 +5,9 @@ using VKtask.Selectors;
 
 namespace VKtask.ObjectPages
 {
+    /// <summary>
+    /// Class of page, where all dialogs are seen
+    /// </summary>
     public class DialogsPage : CurrentVKPage
     {
         private IWebElement dialogSearchForm { get; set; }
@@ -15,7 +18,7 @@ namespace VKtask.ObjectPages
             dialogSearchForm = Driver.FindElement(By.XPath(Selector.DialogsPage.DialogSearchForm));
         }
 
-        public bool GoToDialog(string dialogName)
+        public bool FindDialog(string dialogName)
         {
             dialogSearchForm.SendKeys(dialogName);
             WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));

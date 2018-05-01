@@ -29,7 +29,7 @@ namespace VKtask
                 friends.PrintFiveFirstFriends();
 
                 DialogsPage userDialogs = (DialogsPage)friends.GoTo(LeftPanelButtons.MESSAGES);
-                userDialogs.GoToDialog("Anton Khlebko");
+                userDialogs.FindDialog("Anton Khlebko");
                 userDialogs.SendMessage("Hi! How's it going?");
 
                 userDialogs.LogOut();

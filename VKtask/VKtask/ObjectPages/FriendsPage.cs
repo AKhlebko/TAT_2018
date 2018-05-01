@@ -5,6 +5,9 @@ using VKtask.Selectors;
 
 namespace VKtask.ObjectPages
 {
+    /// <summary>
+    /// Page where user's friends are seen
+    /// </summary>
     public class FriendsPage : CurrentVKPage
     {
         List<IWebElement> friends;

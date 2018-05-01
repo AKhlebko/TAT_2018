@@ -45,7 +45,7 @@ namespace VKtaskTests
         {
             currentPage = (currentPage as LoginPage).LogIn(login, password);
             DialogsPage dialogsPage = (DialogsPage)currentPage.GoTo(LeftPanelButtons.MESSAGES);
-            if (dialogsPage.GoToDialog("Anton Khlebko"))
+            if (dialogsPage.FindDialog("Anton Khlebko"))
             {
                 dialogsPage.SendMessage("HI!");
             }

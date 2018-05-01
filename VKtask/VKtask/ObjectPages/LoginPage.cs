@@ -4,10 +4,12 @@ using VKtask.Selectors;
 
 namespace VKtask.ObjectPages
 {
+    /// <summary>
+    /// Login page of VK come
+    /// </summary>
     public class LoginPage : CurrentVKPage
     {
         public string HomePageUrl { get; set; } = @"https://vk.com/";
-
         public IWebElement userLoginInputForm { get; set; }
         public IWebElement userPasswordInputForm { get; set; }
         public IWebElement loginPushButtion { get; set; }

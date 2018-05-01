@@ -3,6 +3,9 @@ using VKtask.Selectors;
 
 namespace VKtask.ObjectPages
 {
+    /// <summary>
+    /// Page with user's profile
+    /// </summary>
     public class ProfilePage : CurrentVKPage
     {
         public string CurrentStatus { get; set; }

@@ -3,6 +3,9 @@ using VKtask.Selectors;
 
 namespace VKtask.ObjectPages
 {
+    /// <summary>
+    /// Page which seen when user or login are incorrect
+    /// </summary>
     public class FailedToLoginPage : CurrentVKPage
     {
         public IWebElement userLoginInputForm { get; set; }
