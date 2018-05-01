@@ -1,12 +1,6 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Support.PageObjects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium.Chrome;
+using VKtask.Selectors;
 
 namespace VKtask.ObjectPages
 {
@@ -20,11 +14,11 @@ namespace VKtask.ObjectPages
 
         public LoginPage(IWebDriver driver) : base(driver)
         {
-            Driver.Manage().Window.Maximize();
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(100);
             Driver.Navigate().GoToUrl(HomePageUrl);
-            userLoginInputForm = Driver.FindElement(By.XPath(Selectors.LoginInputForm));
-            userPasswordInputForm = Driver.FindElement(By.XPath(Selectors.LoginPasswordForm));
-            loginPushButtion = Driver.FindElement(By.XPath(Selectors.LoginPushButton));
+            userLoginInputForm = Driver.FindElement(By.XPath(Selector.LoginPage.LoginInputForm));
+            userPasswordInputForm = Driver.FindElement(By.XPath(Selector.LoginPage.LoginPasswordForm));
+            loginPushButtion = Driver.FindElement(By.XPath(Selector.LoginPage.LoginPushButton));
         }
 
         public CurrentVKPage LogIn(string userLogin, string userPassword)

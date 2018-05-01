@@ -48,6 +48,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainClass.cs" />
     <Compile Include="ObjectPages\AudiosPage.cs" />
     <Compile Include="ObjectPages\CurrentVKPage.cs" />
     <Compile Include="ObjectPages\DialogsPage.cs" />
@@ -55,9 +56,18 @@
     <Compile Include="ObjectPages\FriendsPage.cs" />
     <Compile Include="ObjectPages\LoginPage.cs" />
     <Compile Include="ObjectPages\NewsPage.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ObjectPages\ProfilePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Selectors.cs" />
+    <Compile Include="Selectors\AudiosPageSelectors.cs" />
+    <Compile Include="Selectors\DialogsPageSelectors.cs" />
+    <Compile Include="Selectors\FriendsPageSelectors.cs" />
+    <Compile Include="Selectors\LeftMenuButtonsSelectors.cs" />
+    <Compile Include="Selectors\LoginFailedPageSelectors.cs" />
+    <Compile Include="Selectors\LoginPageSelectors.cs" />
+    <Compile Include="Selectors\LogOutMenuSelectors.cs" />
+    <Compile Include="Selectors\NewsPageSelectors.cs" />
+    <Compile Include="Selectors\ProfilePageSelectors.cs" />
+    <Compile Include="Selectors\Selector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

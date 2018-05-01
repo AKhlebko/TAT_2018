@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using OpenQA.Selenium;
+using VKtask.Selectors;
 
 namespace VKtask.ObjectPages
 {
@@ -10,22 +11,16 @@ namespace VKtask.ObjectPages
 
         public FriendsPage(IWebDriver driver) : base(driver)
         {
-            friends = new List<IWebElement>(Driver.FindElements(By.XPath("//div[@class='friends_user_row clear_fix']")));
-            for(int i = 0; i < 5; i++)
-            {
-                Console.WriteLine(friends[i].FindElement(By.XPath("//a[contains(@href,.)]")).Text);
-            }
+            friends = new List<IWebElement>(Driver.FindElements(By.XPath(Selector.FriendsPage.FriendsInfo)));
         }
 
         public void PrintFiveFirstFriends()
         {
             Console.WriteLine("User's first friends are:");
-            friends = new List<IWebElement>(Driver.FindElements(By.XPath("//div[@class='friends_user_info']")));
             for (int i = 1; i < 6; i++)
             {
                 Console.WriteLine($"{i}) " + friends[i-1].FindElement(By.XPath("div/a")).Text.Trim());
             }
-
         }
     }
 }

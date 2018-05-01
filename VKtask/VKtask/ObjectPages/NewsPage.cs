@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using VKtask.Selectors;
 
 namespace VKtask.ObjectPages
 {
@@ -9,8 +10,8 @@ namespace VKtask.ObjectPages
 
         public NewsPage(IWebDriver driver) : base(driver)
         {
-            textNewInput = Driver.FindElement(By.XPath(Selectors.TextForNewPostForm));
-            postTextNew = Driver.FindElement(By.XPath(Selectors.SendTextPost));
+            textNewInput = Driver.FindElement(By.XPath(Selector.NewsPage.TextForNewPostForm));
+            postTextNew = Driver.FindElement(By.XPath(Selector.NewsPage.SendTextPost));
         }
 
         public void PostText(string text)

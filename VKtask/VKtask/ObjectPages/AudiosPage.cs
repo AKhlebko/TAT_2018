@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using VKtask.Selectors;
 
 namespace VKtask.ObjectPages
 {
@@ -8,7 +9,7 @@ namespace VKtask.ObjectPages
 
         public AudiosPage(IWebDriver driver) : base(driver)
         {
-            shuffleAll = Driver.FindElement(By.XPath(Selectors.ShuffleAndPlayMusicButton));
+            shuffleAll = Driver.FindElement(By.XPath(Selector.AudiosPage.ShuffleAndPlayMusicButton));
         }
 
         public void ShuffleAndPlay()

@@ -1,14 +1,11 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using VKtask.Selectors;
 
 namespace VKtask.ObjectPages
 {
     public enum LeftPanelButtons
     {
+        PROFILE,
         MESSAGES,
         FRIENDS,
         AUDIOS,
@@ -22,6 +19,7 @@ namespace VKtask.ObjectPages
         public CurrentVKPage(IWebDriver driver)
         {
             Driver = driver;
+            Driver.Manage().Window.Maximize();
         }
 
         public void GoToURL(string URL)
@@ -36,19 +34,30 @@ namespace VKtask.ObjectPages
             switch (button)
             {
                 case LeftPanelButtons.FRIENDS:
-                    Driver.FindElement(By.XPath(Selectors.LFriendsButton)).Click();
+                    Driver.FindElement(By.XPath(Selector.LeftMenuButtons.LFriendsButton)).Click();
                     pageToReturn = new FriendsPage(Driver);
                     break;
                 case LeftPanelButtons.MESSAGES:
-                    Driver.FindElement(By.XPath(Selectors.LMessageButton)).Click();
+                    Driver.FindElement(By.XPath(Selector.LeftMenuButtons.LMessageButton)).Click();
                     pageToReturn = new DialogsPage(Driver);
                     break;
                 case LeftPanelButtons.AUDIOS:
-                    Driver.FindElement(By.XPath(Selectors.LAudiosButton)).Click();
+                    Driver.FindElement(By.XPath(Selector.LeftMenuButtons.LAudiosButton)).Click();
                     pageToReturn = new AudiosPage(Driver);
+                    break;
+                case LeftPanelButtons.PROFILE:
+                    Driver.FindElement(By.XPath(Selector.LeftMenuButtons.LProfile)).Click();
+                    pageToReturn = new ProfilePage(Driver);
                     break;
             }
             return pageToReturn;
+        }
+
+        public void LogOut()
+        {
+            if (this.GetType() == typeof(LoginPage) || this.GetType() == typeof(FailedToLoginPage)) return;
+            Driver.FindElement(By.XPath(Selector.LogOutMenuSelectors.OpenMenu)).Click();
+            Driver.FindElement(By.XPath(Selector.LogOutMenuSelectors.LogOutButton)).Click();
         }
     }
 }

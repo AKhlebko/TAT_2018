@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using VKtask.Selectors;
 
 namespace VKtask.ObjectPages
 {
@@ -15,9 +11,9 @@ namespace VKtask.ObjectPages
 
         public FailedToLoginPage(IWebDriver driver) : base(driver)
         {
-            userLoginInputForm = Driver.FindElement(By.XPath(Selectors.LoginInputForm));
-            userPasswordInputForm = Driver.FindElement(By.XPath(Selectors.LoginPasswordForm));
-            loginPushButtion = Driver.FindElement(By.XPath(Selectors.LoginPushButtonFailedPage));
+            userLoginInputForm = Driver.FindElement(By.XPath(Selector.LoginFailedPage.LoginInputForm));
+            userPasswordInputForm = Driver.FindElement(By.XPath(Selector.LoginFailedPage.LoginPasswordForm));
+            loginPushButtion = Driver.FindElement(By.XPath(Selector.LoginFailedPage.LoginPushButtonFailedPage));
         }
 
         public CurrentVKPage LogIn(string userLogin, string userPassword)
