@@ -1,5 +1,8 @@
 ﻿namespace taskDEV10.AWSelectors
 {
+    /// <summary>
+    /// Selectors used in this homework
+    /// </summary>
     public class Selectors
     {
         public static MainPageSelectors MainPageSelectors = new MainPageSelectors();

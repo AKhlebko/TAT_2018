@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace taskDEV10.Objected_pages
 {
+    /// <summary>
+    /// Abstract class representing av.by page
+    /// </summary>
     public abstract class CurrentAWPage
     {
         public IWebDriver Driver { get; set; }

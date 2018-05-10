@@ -3,7 +3,10 @@ using taskDEV10.AWSelectors;
 
 namespace taskDEV10.Objected_pages
 {
-    internal class CurrentModelPage : CurrentAWPage
+    /// <summary>
+    /// Page shown when model selected
+    /// </summary>
+    public class CurrentModelPage : CurrentAWPage
     {
         private string ModelName;
 

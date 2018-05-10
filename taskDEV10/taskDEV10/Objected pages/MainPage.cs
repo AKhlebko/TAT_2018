@@ -4,6 +4,9 @@ using taskDEV10.AWSelectors;
 
 namespace taskDEV10.Objected_pages
 {
+    /// <summary>
+    /// Main av.by's page
+    /// </summary>
     class MainPage : CurrentAWPage
     {
         public Dictionary<string, int> BrandsWithRefs { get; set; }

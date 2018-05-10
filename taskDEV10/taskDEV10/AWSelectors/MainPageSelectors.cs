@@ -1,5 +1,8 @@
 ﻿namespace taskDEV10.AWSelectors
 {
+    /// <summary>
+    /// Selectors for main av.by's page
+    /// </summary>
     public class MainPageSelectors
     {
         public string Brands;

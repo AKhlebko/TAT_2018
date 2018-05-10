@@ -1,5 +1,8 @@
 ﻿namespace taskDEV10.AWSelectors
 {
+    /// <summary>
+    /// selectors for chosen model page
+    /// </summary>
     public class CurrentModelPageSelectors
     {
         public string PageNumbers;

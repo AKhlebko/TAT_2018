@@ -6,6 +6,9 @@ using System.Text;
 
 namespace taskDEV10.Objected_pages
 {
+    /// <summary>
+    /// Page shown when brand is chosen
+    /// </summary>
     public class BrandPage : CurrentAWPage
     {
         public Dictionary<string, int> ModelsWithRefs { get; set; }
