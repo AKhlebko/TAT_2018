@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  awcars:
+    image: awcars
+    build:
+      context: .\AWcars
+      dockerfile: Dockerfile
