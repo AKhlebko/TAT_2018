@@ -3,7 +3,7 @@ using TaskDEV11;
 
 namespace TaskDEV11Consumer
 {
-    class Program
+    class Client
     {
         static void Main(string[] args)
         {
