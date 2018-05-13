@@ -14,6 +14,10 @@ namespace TaskDEV11Consumer
                 int daysFromBC = service.CountDaysFromBC(date);
                 Console.WriteLine($"It's been {daysFromBC} until {date} since the BC");
             }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                Console.WriteLine(ex.ParamName);
+            }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
