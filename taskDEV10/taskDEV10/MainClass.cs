@@ -11,7 +11,7 @@ namespace taskDEV10
         {
             try
             {
-                IWebDriver driver = new ChromeDriver(@"C:\Users\User\Desktop");
+                IWebDriver driver = new ChromeDriver();
                 driver.Manage().Window.Maximize();
                 MainPage mainPage = new MainPage(driver);
                 string chosenBrand = args[0];

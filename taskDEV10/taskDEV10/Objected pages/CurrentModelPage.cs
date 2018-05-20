@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using taskDEV10.AWSelectors;
+using taskDEV10.AVLocators;
 
 namespace taskDEV10.Objected_pages
 {
@@ -22,14 +22,14 @@ namespace taskDEV10.Objected_pages
 
         public CurrentAWPage GoToNextPage()
         {
-            string[] array = Selectors.CurrentModelPageSelectors.CurrentPageString.Split(' ');
+            string[] array = Locators.CurrentPageString.Split(' ');
             if (array[0] == array[1])
             {
                 return this;
             }
             else
             {
-                Driver.FindElement(By.XPath(Selectors.CurrentModelPageSelectors.NextPageButton)).Click();
+                Driver.FindElement(By.XPath(Locators.NextPageButton)).Click();
                 History.Push(this);
                 return new CurrentModelPage(Driver);
             }
@@ -37,14 +37,14 @@ namespace taskDEV10.Objected_pages
 
         public CurrentAWPage GoToPreviousPage()
         {
-            string[] array = Selectors.CurrentModelPageSelectors.CurrentPageString.Split(' ');
+            string[] array = Locators.CurrentPageString.Split(' ');
             if (int.Parse(array[0]) == 1)
             {
                 return this;
             }
             else
             {
-                Driver.FindElement(By.XPath(Selectors.CurrentModelPageSelectors.PreviousPageButton)).Click();
+                Driver.FindElement(By.XPath(Locators.PreviousPageButton)).Click();
                 History.Push(this);
                 return new CurrentModelPage(Driver);
             }

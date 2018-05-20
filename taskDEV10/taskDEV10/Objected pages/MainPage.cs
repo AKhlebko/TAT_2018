@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System.Collections.Generic;
-using taskDEV10.AWSelectors;
+using taskDEV10.AVLocators;
 
 namespace taskDEV10.Objected_pages
 {
@@ -16,8 +16,8 @@ namespace taskDEV10.Objected_pages
             this.Driver = Driver;
             Driver.Navigate().GoToUrl("https://av.by/");
             BrandsWithRefs = new Dictionary<string, int>();
-            Driver.FindElement(By.XPath(Selectors.MainPageSelectors.ShowAll)).Click();
-            foreach (IWebElement element in Driver.FindElements(By.XPath(Selectors.MainPageSelectors.Brands)))
+            Driver.FindElement(By.XPath(Locators.ShowAll)).Click();
+            foreach (IWebElement element in Driver.FindElements(By.XPath(Locators.Brands)))
             {
                 BrandsWithRefs[element.FindElement(By.TagName("span")).Text.ToLower()] = int.Parse(element.FindElement(By.TagName("small")).Text);
             }

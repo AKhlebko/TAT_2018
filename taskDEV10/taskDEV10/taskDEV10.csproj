@@ -55,16 +55,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AWSelectors\BrandPageSelectors.cs" />
-    <Compile Include="AWSelectors\CurrentModelPageSelectors.cs" />
-    <Compile Include="AWSelectors\Selectors.cs" />
+    <Compile Include="AVLocators\Locators.cs" />
     <Compile Include="MainClass.cs" />
     <Compile Include="Objected pages\BrandPage.cs" />
     <Compile Include="Objected pages\CurrentAWPage.cs" />
     <Compile Include="Objected pages\CurrentModelPage.cs" />
     <Compile Include="Objected pages\MainPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AWSelectors\MainPageSelectors.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

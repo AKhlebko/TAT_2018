@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System.Linq;
 using System.Collections.Generic;
-using taskDEV10.AWSelectors;
+using taskDEV10.AVLocators;
 using System.Text;
 
 namespace taskDEV10.Objected_pages
@@ -17,7 +17,7 @@ namespace taskDEV10.Objected_pages
         {
             Driver = driver;
             ModelsWithRefs = new Dictionary<string, int>();
-            foreach (IWebElement element in Driver.FindElements(By.XPath(Selectors.MainPageSelectors.Brands)))
+            foreach (IWebElement element in Driver.FindElements(By.XPath(Locators.Brands)))
             {
                 ModelsWithRefs[element.FindElement(By.TagName("span")).Text.ToLower()] = int.Parse(element.FindElement(By.TagName("small")).Text);
             }
