@@ -12,13 +12,26 @@ namespace taskDEV3
     {
         // if modulo > 9 -> DigitCode = code('A') + (mudulo - 10);
         private const int AsciiRadixDigitBase = 55;
-        public BigInteger decimalNumber { get; set; }
-        public int newRadix { get; set; }
+        public BigInteger DecimalNumber { get; set; }
+        public int NewRadix { get; set; }
 
+        /// <summary>
+        /// Gets any decimal number above zero and new Radix in range of (2, 20)
+        /// </summary>
+        /// <param name="pDecimalNumber">
+        /// Decimal number
+        /// </param>
+        /// <param name="pNewRadix">
+        /// New Radix
+        /// </param>
         public RadixConverter(BigInteger pDecimalNumber, int pNewRadix)
         {
-            decimalNumber = pDecimalNumber;
-            newRadix = pNewRadix;
+            DecimalNumber = pDecimalNumber;
+            NewRadix = pNewRadix;
+            if (DecimalNumber.Sign == -1 || NewRadix < 2 || NewRadix > 20)
+            {
+                throw new ArgumentOutOfRangeException(paramName: "Invalid range of input decimal number or radix");
+            }
         }
 
         /// <summary>
@@ -29,16 +42,8 @@ namespace taskDEV3
         /// </returns>
         public StringBuilder GetNewRadixNumber()
         {
-            if (newRadix < 2 || newRadix > 20)
-            {
-                throw new ArgumentOutOfRangeException(paramName: "Invalid radix range");
-            }
-            if (decimalNumber.Sign == -1)
-            {
-                throw new ArgumentOutOfRangeException(paramName: "Invalid decimal range");
-            }
-            StringBuilder numberInNewRadix = new StringBuilder();
-            BigInteger bufferDecimalNumber = decimalNumber;
+            var numberInNewRadix = new StringBuilder();
+            BigInteger bufferDecimalNumber = DecimalNumber;
             if (bufferDecimalNumber.IsZero)
             {
                 numberInNewRadix.Append(0);
@@ -47,7 +52,7 @@ namespace taskDEV3
             {
                 while (bufferDecimalNumber > 0)
                 {
-                    int modulo = (int)(bufferDecimalNumber % newRadix);
+                    int modulo = (int)(bufferDecimalNumber % NewRadix);
                     if (modulo < 10)
                     {
                         numberInNewRadix.Insert(0, modulo);
@@ -57,7 +62,7 @@ namespace taskDEV3
                         char newRadixDigit = (char)(AsciiRadixDigitBase + modulo);
                         numberInNewRadix.Insert(0, newRadixDigit);
                     }
-                    bufferDecimalNumber /= newRadix;
+                    bufferDecimalNumber /= NewRadix;
                 }
             }
             return numberInNewRadix;

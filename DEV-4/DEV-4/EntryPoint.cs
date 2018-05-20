@@ -17,9 +17,9 @@ namespace TaskDEV4
                 rootElement.Sort();
                 rootElement.PrintFromRootElement();
             }
-            catch (IndexOutOfRangeException)
+            catch (Exception ex)
             {
-                Console.WriteLine("You haven't add path to XML file in command line args.");
+                Console.WriteLine("ERROR: " + ex.Message);
             }
         }
     }

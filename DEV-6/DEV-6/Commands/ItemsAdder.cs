@@ -24,7 +24,8 @@ namespace DEV_6
         {
             string typeName = GetAddItemsType();
             SaleItem items = GetItemsToAdd();
-            if (ConfirmAdding(typeName, items))
+            string confirmation = GetConfirmation(typeName, items);
+            if (confirmation == "yes")
             {
                 storage.AddItems(typeName, items);
                 Console.WriteLine($"You've added {items} of {typeName}.");
@@ -35,18 +36,10 @@ namespace DEV_6
             }
         }
 
-        private bool ConfirmAdding(string typeName, SaleItem products)
+        private string GetConfirmation(string typeName, SaleItem products)
         {
             Console.Write($"Do you want to add {products} into {typeName} type [Yes/No]: ");
-            string confirmation = Console.ReadLine().ToLower().Trim();
-            if (confirmation == "yes")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Console.ReadLine().ToLower().Trim();
         }
 
         private string GetAddItemsType()

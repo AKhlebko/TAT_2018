@@ -2,11 +2,6 @@
 
 namespace DevTask1
 {
-    /*
-        This class contains methods for getting string
-        and for for finding the longest same character substring
-        Stores processed string in a private field
-    */
     /// <summary>
     /// This class contains methods for getting string
     /// and for for finding the longest same character substring

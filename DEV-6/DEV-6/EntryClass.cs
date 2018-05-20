@@ -10,7 +10,7 @@ namespace DEV_6
             {
                 Storage storage = new Storage();
                 ConsoleMenu menu = new ConsoleMenu(storage);
-                menu.Work();
+                menu.Execute();
             }
             catch (Exception ex)
             {

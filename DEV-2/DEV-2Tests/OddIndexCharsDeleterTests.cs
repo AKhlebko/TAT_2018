@@ -12,10 +12,10 @@ namespace TaskDEV2Tests
             // arrange
             string inputString = "112233445!6!7!";
             string excpected = "1234567";
-            OddIndexCharsDeleter evener = new OddIndexCharsDeleter(inputString);
+            EvenPosCharsString evener = new EvenPosCharsString(inputString);
 
             // act
-            string actual = evener.MakeEvenIndexStringBulder().ToString();
+            string actual = evener.GetEvenPossStringBuilder().ToString();
 
             // assert
             Assert.Equal(excpected, actual);
@@ -27,10 +27,10 @@ namespace TaskDEV2Tests
             // arrange
             string inputString = string.Empty;
             string excpected = string.Empty;
-            OddIndexCharsDeleter evener = new OddIndexCharsDeleter(inputString);
+            EvenPosCharsString evener = new EvenPosCharsString(inputString);
 
             // act
-            string actual = evener.MakeEvenIndexStringBulder().ToString();
+            string actual = evener.GetEvenPossStringBuilder().ToString();
 
             // assert
             Assert.Equal(excpected, actual);

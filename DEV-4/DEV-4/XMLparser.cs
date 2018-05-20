@@ -3,11 +3,19 @@
 namespace TaskDEV4
 {
     /// <summary>
-    /// Class's for parsing XML files
+    /// Class for parsing XML files
     /// </summary>
     class XMLparser
     {
-        
+        /// <summary>
+        /// Method removes all comments in a XML file
+        /// </summary>
+        /// <param name="xmlString">
+        /// String contraining XML file's data
+        /// </param>
+        /// <returns>
+        /// String without comments
+        /// </returns>
         public string DeleteComments(string xmlString)
         {
             while (xmlString.Contains("<!--"))
@@ -92,7 +100,7 @@ namespace TaskDEV4
         /// </param>
         private void AddAttrsIntoElement(string elementString, XmlElement xmlElement)
         {
-            elementString = elementString.Replace(xmlElement.tagName, string.Empty).Trim();
+            elementString = elementString.Replace(xmlElement.TagName, string.Empty).Trim();
             while (elementString.Contains("="))
             {
                 string attrName = GetAttrName(elementString);

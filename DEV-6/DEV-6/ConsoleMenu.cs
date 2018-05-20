@@ -8,6 +8,7 @@ namespace DEV_6
     /// </summary>
     class ConsoleMenu
     {
+        private int numberOfAvailabeCommands = 6;
         private const string menuString = "Choose action:\n" +
             "1) Add items\n" +
             "2) count types\n" +
@@ -37,7 +38,7 @@ namespace DEV_6
         /// Endless cycle for rendering text menu
         /// switching between commanders and executing commands
         /// </summary>
-        public void Work()
+        public void Execute()
         {
             while (true)
             {
@@ -76,7 +77,7 @@ namespace DEV_6
             {
                 if (int.TryParse((inputString = Console.ReadLine()), out response))
                 {
-                    if (response > 0 && response < 7)
+                    if (response > 0 && response <= numberOfAvailabeCommands)
                     {
                         return response;
                     }

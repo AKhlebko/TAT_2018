@@ -15,8 +15,8 @@ namespace TaskDEV2
                 Console.Write("Input not empty string: ");
                 inputString = Console.ReadLine();
             }
-            OddIndexCharsDeleter evener = new OddIndexCharsDeleter(inputString);
-            StringBuilder onlyEvenPosCharsBuilder =  evener.MakeEvenIndexStringBulder();
+            var evener = new EvenPosCharsString(inputString);
+            StringBuilder onlyEvenPosCharsBuilder =  evener.GetEvenPossStringBuilder();
             Console.WriteLine(onlyEvenPosCharsBuilder); 
         }       
     }

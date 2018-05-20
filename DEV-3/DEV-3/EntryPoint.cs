@@ -10,13 +10,9 @@ namespace taskDEV3
         {
             try
             {
-                ConsoleDataFormatChecker checker = new ConsoleDataFormatChecker(args);
-                if (checker.CheckInputDataFormat())
-                {
-                    RadixConverter converter = new RadixConverter(BigInteger.Parse(args[0]), int.Parse(args[1]));
-                    StringBuilder NumberInNewRadix = converter.GetNewRadixNumber();
-                    Console.WriteLine($"Number {converter.decimalNumber} in new radix {converter.newRadix} is {NumberInNewRadix}");
-                }
+                var converter = new RadixConverter(BigInteger.Parse(args[0]), int.Parse(args[1]));
+                StringBuilder NumberInNewRadix = converter.GetNewRadixNumber();
+                Console.WriteLine($"Number {converter.DecimalNumber} in new radix {converter.NewRadix} is {NumberInNewRadix}");
             }
             catch (ArgumentOutOfRangeException ex)
             {
@@ -24,14 +20,7 @@ namespace taskDEV3
             }
             catch (FormatException ex)
             {
-                if (ex.Source == "System.Numerics")
-                {
-                    Console.WriteLine("ERROR: Wrong decimal number format.");
-                }
-                else
-                {
-                    Console.WriteLine("ERROR: Wrong radix format.");
-                }
+                Console.WriteLine("ERROR: " + ex.Message);
             }
         }
     }

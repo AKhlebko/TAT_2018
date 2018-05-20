@@ -44,19 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AveragePriceCounter.cs" />
-    <Compile Include="AveragePriceInTypeCounter.cs" />
-    <Compile Include="ICommand.cs" />
+    <Compile Include="Commands\AveragePriceCounter.cs" />
+    <Compile Include="Commands\AveragePriceInTypeCounter.cs" />
+    <Compile Include="BehaviorIterfaces\ICommand.cs" />
     <Compile Include="ConsoleMenu.cs" />
-    <Compile Include="IStorageActions.cs" />
-    <Compile Include="ItemsAdder.cs" />
-    <Compile Include="ItemsCounter.cs" />
+    <Compile Include="BehaviorIterfaces\IStorageActions.cs" />
+    <Compile Include="Commands\ItemsAdder.cs" />
+    <Compile Include="Commands\ItemsCounter.cs" />
     <Compile Include="SaleItem.cs" />
     <Compile Include="EntryClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage.cs" />
     <Compile Include="Terminal.cs" />
-    <Compile Include="TypeCounter.cs" />
+    <Compile Include="Commands\TypeCounter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

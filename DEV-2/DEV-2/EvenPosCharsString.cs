@@ -3,10 +3,10 @@
 namespace TaskDEV2
 {
     /// <summary>
-    /// Class contains methods for deleting all odd symbols 
-    /// in the string using StringBilder
+    /// Class for gettings string with
+    /// chars on the even indexes
     /// </summary>
-    public class OddIndexCharsDeleter
+    public class EvenPosCharsString
     {
         StringBuilder processedStringBuilder;
 
@@ -17,7 +17,7 @@ namespace TaskDEV2
         /// string parameter for 
         /// processedStringBuilder assignment
         /// </param>
-        public OddIndexCharsDeleter(string str)
+        public EvenPosCharsString(string str)
         {
             processedStringBuilder = new StringBuilder(str);
         }
@@ -29,7 +29,7 @@ namespace TaskDEV2
         /// <returns>
         /// Returns made StringBuilder
         /// </returns>
-        public StringBuilder MakeEvenIndexStringBulder()
+        public StringBuilder GetEvenPossStringBuilder()
         {
             StringBuilder outputEvenStringBuilder = new StringBuilder();
             for (int i = 0; i < processedStringBuilder.Length; i += 2)

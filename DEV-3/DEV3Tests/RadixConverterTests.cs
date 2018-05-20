@@ -43,15 +43,14 @@ namespace DEV3Tests
         [TestCase(123, 21)]
         [TestCase(-123, 12)]
         [TestCase(-123, 1)]
-        public void GetNewRadixNumber_InvalidNumbersRange_ArgumentOutOfRangeThrown(int num, int radix)
+        public void Constructor_InvalidNumbersRange_ArgumentOutOfRangeThrown(int num, int radix)
         {
             // arrange
             BigInteger decimalNumber = new BigInteger(num);
-            RadixConverter converter = new RadixConverter(decimalNumber, radix);
 
             // assert 
-            ArgumentOutOfRangeException ex = Assert.Throws<ArgumentOutOfRangeException>(() => converter.GetNewRadixNumber());
-            Assert.That(ex.ParamName == "Invalid radix range" || ex.ParamName == "Invalid decimal range");
+            ArgumentOutOfRangeException ex = Assert.Throws<ArgumentOutOfRangeException>(() => new RadixConverter(decimalNumber, radix));
+            Assert.That(ex.ParamName == "Invalid range of input decimal number or radix");
         }
     }
 }

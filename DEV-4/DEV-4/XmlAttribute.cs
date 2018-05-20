@@ -7,13 +7,13 @@ namespace TaskDEV4
     /// </summary>
     class XmlAttribute : IComparable<XmlAttribute>
     {
-        public string attrName { get; }
-        public string attrValue { get; }
+        public string AttrName { get; }
+        public string AttrValue { get; }
 
         public XmlAttribute(string name, string value)
         {
-            this.attrName = name.Trim();
-            this.attrValue = value.Trim();
+            this.AttrName = name.Trim();
+            this.AttrValue = value.Trim();
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace TaskDEV4
         /// </returns>
         public int CompareTo(XmlAttribute second)
         {
-            return attrName.CompareTo(second.attrName);
+            return AttrName.CompareTo(second.AttrName);
         }
     }
 }
