@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKtask", "VKtask\VKtask.csproj", "{E968361C-C0F6-4253-B017-A8ACAA7FB91D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKtaskTests", "VKtaskTests\VKtaskTests.csproj", "{8E9044DE-1BD7-4EDA-9303-D529DA760E6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E968361C-C0F6-4253-B017-A8ACAA7FB91D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E968361C-C0F6-4253-B017-A8ACAA7FB91D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E968361C-C0F6-4253-B017-A8ACAA7FB91D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E968361C-C0F6-4253-B017-A8ACAA7FB91D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E9044DE-1BD7-4EDA-9303-D529DA760E6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E9044DE-1BD7-4EDA-9303-D529DA760E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E9044DE-1BD7-4EDA-9303-D529DA760E6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E9044DE-1BD7-4EDA-9303-D529DA760E6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF8DD68D-3888-4403-BDF9-C0443186EBE9}
+	EndGlobalSection
+EndGlobal
